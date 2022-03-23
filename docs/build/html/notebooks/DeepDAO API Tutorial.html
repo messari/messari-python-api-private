@@ -62,17 +62,14 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#DAO-Specific-Functions">DAO Specific Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Get-dao-info">Get dao info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Get-dao-indices">Get dao indices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Get-dao-proposals">Get dao proposals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Get-dao-activity">Get dao activity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Get-dao-members">Get dao members</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Get-dao-voter-coalitions">Get dao voter coalitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Get-dao-financials">Get dao financials</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#Members-Specific-Functions">Members Specific Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Get-top-members">Get top members</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Get-member-info">Get member info</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Get-member-proposals">Get member proposals</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Get-member-votes">Get member votes</a></li>
 </ul>
 </li>
@@ -85,6 +82,7 @@
 <li class="toctree-l1"><a class="reference internal" href="NonFungible%20API%20Tutorial.html">NonFungible Python API Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="NFT%20Price%20Floor%20API%20Tutorial.html">NFT Price Floor Python API Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Event%20Monitor%20Tutorial.html">Event Monitor Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fred.html">FRED API Tutorial</a></li>
 </ul>
 
         </div>
@@ -386,7 +384,7 @@ div.rendered_html tbody tr:hover {
 <h1>DeepDAO Python API Tutorial<a class="headerlink" href="#DeepDAO-Python-API-Tutorial" title="Permalink to this headline"></a></h1>
 <p>This tutorial aims to be a quick guide to get you started using the DeepDAO API integrated into messari’s python library.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">messari.deepdao</span> <span class="kn">import</span> <span class="n">DeepDAO</span>
@@ -397,10 +395,28 @@ div.rendered_html tbody tr:hover {
 <section id="API-Structure">
 <h2>API Structure<a class="headerlink" href="#API-Structure" title="Permalink to this headline"></a></h2>
 <p>The Deep DAO Python client contains a number of functions that wrap some of Deep DAO’s API endpoints. These include:</p>
-<p>Helpers * get_dao_list * get_member_list</p>
-<p>Overview * get_organizations * get_summary * get_rankings * get_tokens</p>
-<p>DAOs * get_dao_info * get_dao_indices * get_dao_proposals * get_dao_members * get_dao_voter_coalitions * get_dao_financials</p>
-<p>Members * get_top_members * get_member_info * get_member_proposals * get_member_votes</p>
+<p>Helpers * get_dao_list</p>
+<ul class="simple">
+<li><p>get_member_list</p></li>
+</ul>
+<p>Overview * get_organizations</p>
+<ul class="simple">
+<li><p>get_summary</p></li>
+<li><p>get_rankings</p></li>
+<li><p>get_tokens</p></li>
+</ul>
+<p>DAOs * get_dao_info</p>
+<ul class="simple">
+<li><p>get_dao_activity</p></li>
+<li><p>get_dao_members</p></li>
+<li><p>get_dao_financials</p></li>
+</ul>
+<p>Members * get_top_members</p>
+<ul class="simple">
+<li><p>get_member_info</p></li>
+<li><p>get_member_proposals</p></li>
+<li><p>get_member_votes</p></li>
+</ul>
 <p>Below are a few examples to showcase the functionality and types of data each function generates.</p>
 </section>
 <section id="Helpers">
@@ -410,7 +426,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get dao list<a class="headerlink" href="#Get-dao-list" title="Permalink to this headline"></a></h3>
 <p>The function returns a list of all the DAOs tracked by DeepDAO</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dao_list</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_list</span><span class="p">()</span>
@@ -419,12 +435,12 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;DimensionLab&#39;, &#39;JuiceboxDAO&#39;, &#39;Constitution&#39;, &#39;ApocalypseDAO&#39;, &#39;BarnBridge&#39;]
+[&#39;Compound&#39;, &#39;Idle Finance&#39;, &#39;Fei&#39;, &#39;BProtocol&#39;, &#39;Gitcoin&#39;]
 </pre></div></div>
 </div>
 </section>
@@ -432,7 +448,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get member list<a class="headerlink" href="#Get-member-list" title="Permalink to this headline"></a></h3>
 <p>The function returns a list of all the DAO Members tracked by DeepDAO</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">member_list</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_member_list</span><span class="p">()</span>
@@ -441,12 +457,12 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;Ven Gist&#39;, &#39;scottrepreneur&#39;, &#34;Peter &#39;pet3rpan&#39;&#34;, &#39;Deke&#39;, &#39;Coopahtroopa&#39;]
+[&#39;Cr1pto&#39;, &#39;lordgiv.eth&#39;, &#39;OOXili&#39;, &#39;keysplatz.eth&#39;, &#39;tlmlit.eth&#39;]
 </pre></div></div>
 </div>
 </section>
@@ -458,7 +474,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get organizations<a class="headerlink" href="#Get-organizations" title="Permalink to this headline"></a></h3>
 <p>Returns basic information for all DeepDAO tracked organizations</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">organizations</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_organizations</span><span class="p">()</span>
@@ -467,7 +483,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -494,59 +510,59 @@ div.rendered_html tbody tr:hover {
       <th>description</th>
       <th>active</th>
       <th>logo</th>
-      <th>created_at</th>
+      <th>createdAt</th>
       <th>items</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>79f19d88-ed4c-4d25-9e10-f99521140cd6</td>
-      <td>YYDS_B</td>
-      <td>DeepDAO research coming soon</td>
+      <td>59b3cb22-a5a2-4aaa-b7fb-360baa910666</td>
+      <td>SuperRare</td>
+      <td>&lt;p&gt;SuperRare is a leading NFT art platform and...</td>
       <td>1</td>
       <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>2021-09-03T18:02:22.787Z</td>
+      <td>2021-09-22T14:17:11.249Z</td>
       <td>None</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>f452294b-5afc-49eb-9b6b-bdbb892f748b</td>
-      <td>Ingrav</td>
+      <td>f0568222-ff69-412b-9865-aad21803fca6</td>
+      <td>yuyudao</td>
       <td>DeepDAO research coming soon</td>
       <td>1</td>
       <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>2021-11-10T02:57:28.651Z</td>
+      <td>2021-12-17T09:47:37.683Z</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>e08d65fd-8b23-4c54-baf4-42105e2360fb</td>
-      <td>Chibi Labs DAO</td>
-      <td>The official DAO of all Chibi Labs collections.</td>
+      <td>5e5e1716-89cb-466a-b8dc-4322029de49b</td>
+      <td>WEENUS</td>
+      <td>DeepDAO research coming soon</td>
       <td>1</td>
       <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>2021-11-11T07:06:04.631Z</td>
+      <td>2021-09-03T14:15:15.935Z</td>
       <td>None</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>f2b515b5-e860-4488-866e-5f9a5ef42c20</td>
-      <td>Mate</td>
-      <td>Limit Orders</td>
+      <td>d4c62b77-66b1-42ad-8351-35904038ae71</td>
+      <td>Cathy Bank</td>
+      <td>An upcoming defi bank coming soon</td>
       <td>1</td>
       <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>2021-11-12T03:47:52.076Z</td>
+      <td>2021-09-03T14:22:14.466Z</td>
       <td>None</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>fb0c86ff-26b7-488c-af18-e2a9466812f3</td>
-      <td>OtterClam</td>
-      <td>DeepDAO research coming soon</td>
+      <td>c6ee1065-46fe-4911-85d2-2c7d0b32ee30</td>
+      <td>HONEST Yield Farm</td>
+      <td>We believe the most important asset of any pro...</td>
       <td>1</td>
       <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>2021-11-12T03:47:52.076Z</td>
+      <td>2021-09-03T14:28:31.468Z</td>
       <td>None</td>
     </tr>
   </tbody>
@@ -558,7 +574,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get summary<a class="headerlink" href="#Get-summary" title="Permalink to this headline"></a></h3>
 <p>Returns basic summaries of information for all DeepDAO tracked organizations</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_summary</span><span class="p">()</span>
@@ -567,7 +583,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -591,99 +607,81 @@ div.rendered_html tbody tr:hover {
       <th></th>
       <th>daoName</th>
       <th>organizationId</th>
-      <th>daoId</th>
       <th>logo</th>
       <th>totalNumMembers</th>
       <th>totalNumProposals</th>
-      <th>totalNumVoters</th>
       <th>totalValueUSD</th>
-      <th>totalInUSD</th>
-      <th>totalOutUSD</th>
-      <th>votersParticipation</th>
-      <th>thumbName</th>
-      <th>platform</th>
+      <th>totalNumVotes</th>
+      <th>activeMembers</th>
+      <th>change24hPercentage</th>
+      <th>numberOfDaoAccounts</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>DimensionLab</td>
-      <td>c5519131-209d-4b0d-a422-effebb9098cf</td>
-      <td>dimensionlab.aragonid.eth</td>
-      <td>dimension-lab.jpeg</td>
-      <td>1</td>
+      <td>Compound</td>
+      <td>52bf381b-79a8-4498-8504-41961beda494</td>
+      <td>compound.png</td>
+      <td>190279</td>
+      <td>93</td>
+      <td>3.108263e+08</td>
+      <td>3671</td>
+      <td>1149</td>
+      <td>-1.853623</td>
       <td>2</td>
-      <td>0</td>
-      <td>2.265061e+04</td>
-      <td>1.000003e+03</td>
-      <td>0.000000e+00</td>
-      <td>0.000000</td>
-      <td></td>
-      <td>4</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>JuiceboxDAO</td>
-      <td>3c66ac5d-e30a-40c9-be85-8ff659ee53d3</td>
-      <td>jbdao.eth</td>
-      <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>3618</td>
-      <td>37</td>
-      <td>132</td>
-      <td>4.219626e+04</td>
-      <td>8.615961e+04</td>
-      <td>4.721095e+04</td>
-      <td>3.648425</td>
-      <td></td>
-      <td>12</td>
+      <td>Idle Finance</td>
+      <td>2ac1beef-40f4-4893-9f1c-c99f73990744</td>
+      <td>idle-finance.png</td>
+      <td>4136</td>
+      <td>90</td>
+      <td>5.416160e+06</td>
+      <td>1216</td>
+      <td>355</td>
+      <td>3.952618</td>
+      <td>6</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Constitution</td>
-      <td>c050cfb9-67bd-4ebc-b086-4ab57345da2a</td>
-      <td>2a988310-48d5-4809-bc65-622d43fc5f58</td>
+      <td>Fei</td>
+      <td>996e1469-01d7-4e94-b18a-c7c970b8c1ec</td>
       <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>9040</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1.702046e+04</td>
-      <td>5.224207e+07</td>
-      <td>1.046350e+08</td>
-      <td>-1.000000</td>
-      <td></td>
-      <td>-1</td>
+      <td>16310</td>
+      <td>93</td>
+      <td>1.574061e+08</td>
+      <td>10093</td>
+      <td>4709</td>
+      <td>10.917848</td>
+      <td>5</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>ApocalypseDAO</td>
-      <td>08015cac-5454-4bcf-85d1-5f526b7c8899</td>
-      <td>0x44d55a8492a90640dc6af013657eaf1ac5bc9548</td>
-      <td>apocalypsedao.jpg</td>
-      <td>7</td>
-      <td>22</td>
-      <td>4</td>
-      <td>3.053519e+03</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>57.142857</td>
-      <td></td>
+      <td>BProtocol</td>
+      <td>c7211182-72ba-4583-a616-d7cb79efcee0</td>
+      <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
+      <td>1602</td>
+      <td>0</td>
+      <td>2.338673e+06</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-2.991887</td>
       <td>1</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>BarnBridge</td>
-      <td>6a15c265-e700-4519-9221-610004c671f2</td>
-      <td>0x4cae362d7f227e3d306f70ce4878e245563f3069</td>
-      <td>barnbridgelaunch.jpg</td>
-      <td>15</td>
-      <td>98</td>
-      <td>13</td>
-      <td>5.660217e+07</td>
-      <td>2.626249e+08</td>
-      <td>2.060228e+08</td>
-      <td>86.666667</td>
-      <td></td>
-      <td>-1</td>
+      <td>Gitcoin</td>
+      <td>aca77a4e-ecb1-4eb3-a722-979977a52eb4</td>
+      <td>gitcoin.png</td>
+      <td>19381</td>
+      <td>23</td>
+      <td>5.180375e+07</td>
+      <td>586</td>
+      <td>395</td>
+      <td>1.87981</td>
+      <td>2</td>
     </tr>
   </tbody>
 </table>
@@ -735,49 +733,49 @@ div.rendered_html tbody tr:hover {
   </thead>
   <tbody>
     <tr>
-      <th>2021-11-27</th>
-      <td>1.487116e+10</td>
-      <td>1463865</td>
-      <td>58</td>
-      <td>7</td>
-      <td>48</td>
-      <td>69</td>
+      <th>2022-03-18</th>
+      <td>9378061071.794371</td>
+      <td>2200324.0</td>
+      <td>86</td>
+      <td>8</td>
+      <td>52</td>
+      <td>119</td>
     </tr>
     <tr>
-      <th>2021-11-28</th>
-      <td>1.420502e+10</td>
-      <td>1476934</td>
-      <td>58</td>
-      <td>7</td>
-      <td>48</td>
-      <td>69</td>
+      <th>2022-03-19</th>
+      <td>9403315115.714058</td>
+      <td>2202332.0</td>
+      <td>86</td>
+      <td>8</td>
+      <td>52</td>
+      <td>119</td>
     </tr>
     <tr>
-      <th>2021-11-29</th>
-      <td>1.494758e+10</td>
-      <td>1667291</td>
-      <td>58</td>
-      <td>7</td>
-      <td>33</td>
-      <td>71</td>
+      <th>2022-03-20</th>
+      <td>9433551835.536861</td>
+      <td>2206029.0</td>
+      <td>86</td>
+      <td>8</td>
+      <td>52</td>
+      <td>119</td>
     </tr>
     <tr>
-      <th>2021-11-30</th>
-      <td>1.505147e+10</td>
-      <td>1668082</td>
-      <td>58</td>
-      <td>7</td>
-      <td>33</td>
-      <td>71</td>
+      <th>2022-03-21</th>
+      <td>9392102887.280945</td>
+      <td>2208583.0</td>
+      <td>86</td>
+      <td>8</td>
+      <td>52</td>
+      <td>119</td>
     </tr>
     <tr>
-      <th>2021-12-01</th>
-      <td>1.575149e+10</td>
-      <td>1677683</td>
-      <td>58</td>
+      <th>2022-03-22</th>
+      <td>9998339056.559202</td>
+      <td>2210743.0</td>
+      <td>87</td>
       <td>7</td>
-      <td>27</td>
-      <td>69</td>
+      <td>52</td>
+      <td>119</td>
     </tr>
   </tbody>
 </table>
@@ -788,7 +786,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get rankings<a class="headerlink" href="#Get-rankings" title="Permalink to this headline"></a></h3>
 <p>The function returns a pandas DataFrame of DAO ranked by different organization metrics</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rankings</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_rankings</span><span class="p">()</span>
@@ -797,7 +795,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -845,123 +843,123 @@ div.rendered_html tbody tr:hover {
   <tbody>
     <tr>
       <th>0</th>
-      <td>0x5A49Fb12f512451819cAeB7F4bE37e89f0eb0aFd</td>
-      <td>Burn Signal</td>
-      <td>97</td>
-      <td>129</td>
-      <td>125</td>
-      <td>153</td>
-      <td>171</td>
-      <td>170</td>
+      <td>a3382dd2-bb02-4aef-845d-f65229ec9e3e</td>
+      <td>Compound</td>
+      <td>6</td>
+      <td>1</td>
+      <td>1</td>
+      <td>4</td>
+      <td>47</td>
+      <td>29</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>-14</td>
-      <td>-13</td>
-      <td>-12</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>4</td>
+      <td>0</td>
       <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-15</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-15</td>
+      <td>3</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0xb42616e266cb0c6d34c1434f09b95ed50bb551ed</td>
-      <td>Orochi DAO V2</td>
-      <td>122</td>
-      <td>140</td>
-      <td>133</td>
-      <td>154</td>
-      <td>135</td>
-      <td>149</td>
+      <td>c3389f54-744a-427b-bafc-a15638c31439</td>
+      <td>Idle</td>
+      <td>76</td>
+      <td>2</td>
+      <td>2</td>
+      <td>55</td>
+      <td>141</td>
+      <td>95</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>-15</td>
-      <td>-13</td>
-      <td>-12</td>
-      <td>-40</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>-1</td>
-      <td>-10</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-15</td>
+      <td>-1</td>
+      <td>-12</td>
+      <td>-2</td>
+      <td>-2</td>
+      <td>-11</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0xee7fa430a7e513d3df962ed0c0e285bc6f87fc24</td>
-      <td>CENNZnet Grants DAO</td>
-      <td>117</td>
-      <td>109</td>
-      <td>102</td>
-      <td>110</td>
-      <td>114</td>
-      <td>101</td>
+      <td>37cc4ab5-dd44-445f-a2b0-feda03ad609d</td>
+      <td>Fei</td>
+      <td>12</td>
+      <td>3</td>
+      <td>3</td>
+      <td>241</td>
+      <td>224</td>
+      <td>224</td>
       <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>-9</td>
-      <td>-10</td>
-      <td>-9</td>
       <td>-1</td>
+      <td>...</td>
       <td>0</td>
-      <td>0</td>
-      <td>-5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-14</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-214</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-108</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-188</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0x016e79e9101a8eaa3e7f46d6d1c267819c09c939</td>
-      <td>Machi X DAO</td>
-      <td>126</td>
-      <td>107</td>
-      <td>104</td>
-      <td>54</td>
-      <td>79</td>
-      <td>112</td>
+      <td>64495684-c3ee-4fe2-a30b-958691976632</td>
+      <td>BProtocol</td>
+      <td>84</td>
+      <td>4</td>
+      <td>4</td>
+      <td>77</td>
+      <td>225</td>
+      <td>225</td>
       <td>0</td>
-      <td>2</td>
+      <td>0</td>
       <td>...</td>
-      <td>-18</td>
       <td>0</td>
       <td>0</td>
-      <td>25</td>
       <td>0</td>
+      <td>-10</td>
       <td>-1</td>
-      <td>-5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>-15</td>
+      <td>-1</td>
+      <td>-24</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-24</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0xbeb3e32355a933501c247e2dbde6e6ca2489bf3d</td>
-      <td>Raid Guild War Chest</td>
-      <td>74</td>
-      <td>81</td>
-      <td>79</td>
-      <td>13</td>
-      <td>25</td>
-      <td>67</td>
+      <td>6ccc01bb-6a94-41c8-895f-109638e43fb6</td>
+      <td>Gitcoin</td>
+      <td>31</td>
+      <td>5</td>
+      <td>5</td>
+      <td>20</td>
+      <td>125</td>
+      <td>49</td>
       <td>0</td>
       <td>-1</td>
       <td>...</td>
-      <td>-10</td>
-      <td>0</td>
-      <td>0</td>
-      <td>49</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>-1</td>
-      <td>-14</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>9</td>
+      <td>-1</td>
+      <td>-1</td>
+      <td>-2</td>
     </tr>
   </tbody>
 </table>
@@ -973,7 +971,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get tokens<a class="headerlink" href="#Get-tokens" title="Permalink to this headline"></a></h3>
 <p>Returns information about the utilization of different tokens across all DAOs tracked by DeepDAO</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tokens</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_tokens</span><span class="p">()</span>
@@ -982,7 +980,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1010,53 +1008,59 @@ div.rendered_html tbody tr:hover {
       <th>numDaos</th>
       <th>daosTotalBalance</th>
       <th>daosTotalUsdValue</th>
+      <th>tokenIcon</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>Uniswap</td>
       <td>UNI</td>
-      <td>[marsdao.aragonid.eth, 0xa365A8429FceFdbE1E684...</td>
-      <td>13</td>
-      <td>1.735275e+08</td>
-      <td>3.059293e+09</td>
+      <td>UNI</td>
+      <td>[a3382dd2-bb02-4aef-845d-f65229ec9e3e, 6ccc01b...</td>
+      <td>12</td>
+      <td>2.277536e+08</td>
+      <td>2.220228e+09</td>
+      <td>https://token-icons.s3.amazonaws.com/0x1f9840a...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>BitDAO</td>
       <td>BIT</td>
-      <td>[sushigov.eth, bitdao.eth]</td>
+      <td>BIT</td>
+      <td>[16b9f84c-819e-4fd6-9600-10edfc81dedd, e233420...</td>
       <td>2</td>
-      <td>9.034524e+08</td>
-      <td>1.801844e+09</td>
+      <td>9.024343e+08</td>
+      <td>1.030945e+09</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>Ethereum</td>
       <td>ETH</td>
-      <td>[0x5A49Fb12f512451819cAeB7F4bE37e89f0eb0aFd, 0...</td>
-      <td>93</td>
-      <td>2.738264e+05</td>
-      <td>1.185703e+09</td>
+      <td>ETH</td>
+      <td>[c3389f54-744a-427b-bafc-a15638c31439, 6ccc01b...</td>
+      <td>110</td>
+      <td>2.826951e+05</td>
+      <td>8.438983e+08</td>
+      <td>https://token-icons.s3.amazonaws.com/eth.png</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>Lido DAO Token</td>
       <td>LDO</td>
-      <td>[0x0c188B183FF758500D1D18B432313d10e9F6b8a4, y...</td>
-      <td>4</td>
-      <td>2.034113e+08</td>
-      <td>7.051699e+08</td>
+      <td>LDO</td>
+      <td>[c3389f54-744a-427b-bafc-a15638c31439, 6ccc01b...</td>
+      <td>9</td>
+      <td>1.826976e+08</td>
+      <td>6.487400e+08</td>
+      <td>https://token-icons.s3.amazonaws.com/0x5a98fcb...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>Compound</td>
-      <td>COMP</td>
-      <td>[marsdao.aragonid.eth, trust.aragonid.eth, 0x0...</td>
-      <td>8</td>
-      <td>2.947380e+06</td>
-      <td>6.495804e+08</td>
+      <td>MNGO</td>
+      <td>MNGO</td>
+      <td>[58bf8009-2b6c-4dee-9d00-df584296a391]</td>
+      <td>1</td>
+      <td>3.959942e+09</td>
+      <td>6.020914e+08</td>
+      <td>https://logos.covalenthq.com/tokens/1399811149...</td>
     </tr>
   </tbody>
 </table>
@@ -1068,7 +1072,7 @@ div.rendered_html tbody tr:hover {
 <h2>DAO Specific Functions<a class="headerlink" href="#DAO-Specific-Functions" title="Permalink to this headline"></a></h2>
 <p>These functions return different information for a given DAO or list of DAOs</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># DAOs tracked by Deep DAO</span>
@@ -1080,7 +1084,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get dao info<a class="headerlink" href="#Get-dao-info" title="Permalink to this headline"></a></h3>
 <p>Returns basic information for a given DAO or list of DAOs</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">info</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_info</span><span class="p">(</span><span class="n">dao_slugs</span><span class="o">=</span><span class="n">daos</span><span class="p">)</span>
@@ -1089,7 +1093,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1118,170 +1122,83 @@ div.rendered_html tbody tr:hover {
   <tbody>
     <tr>
       <th>id</th>
-      <td>4f466e08-9125-40fd-ba15-77552dec7c65</td>
-      <td>a3382dd2-bb02-4aef-845d-f65229ec9e3e</td>
+      <td>fe6aa70f-4877-4f6d-9c18-9a8cafc1fe28</td>
+      <td>52bf381b-79a8-4498-8504-41961beda494</td>
     </tr>
     <tr>
-      <th>title</th>
+      <th>name</th>
       <td>Uniswap</td>
       <td>Compound</td>
     </tr>
     <tr>
       <th>description</th>
-      <td>None</td>
-      <td>None</td>
+      <td>Uniswap is a Decentralized EXchange that gener...</td>
+      <td>Compound is a pioneer lending protocol based o...</td>
     </tr>
     <tr>
-      <th>isActive</th>
-      <td>True</td>
-      <td>True</td>
+      <th>logo</th>
+      <td>uniswap.png</td>
+      <td>compound.png</td>
     </tr>
     <tr>
-      <th>mainSiteLink</th>
+      <th>createdAt</th>
+      <td>2020-12-08T16:18:29.904Z</td>
+      <td>2020-12-08T16:17:53.769Z</td>
+    </tr>
+    <tr>
+      <th>proposalsCount</th>
+      <td>72</td>
+      <td>112</td>
+    </tr>
+    <tr>
+      <th>votesCount</th>
+      <td>25993</td>
+      <td>4012</td>
+    </tr>
+    <tr>
+      <th>membersCount</th>
+      <td>317684</td>
+      <td>190590</td>
+    </tr>
+    <tr>
+      <th>voterParticipation</th>
+      <td>1.726558</td>
+      <td>0.742956</td>
+    </tr>
+    <tr>
+      <th>aum</th>
+      <td>2221332885.891883</td>
+      <td>310826257.957725</td>
+    </tr>
+    <tr>
+      <th>website</th>
       <td>https://uniswap.org/</td>
       <td>https://compound.finance/</td>
     </tr>
     <tr>
-      <th>logo</th>
-      <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-      <td>https://deepdao-uploads.s3.us-east-2.amazonaws...</td>
-    </tr>
-    <tr>
-      <th>twitter</th>
-      <td>https://twitter.com/Uniswap</td>
-      <td>https://twitter.com/compoundfinance</td>
-    </tr>
-    <tr>
-      <th>telegram</th>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>discord</th>
-      <td>https://discord.com/invite/FCfyBSbCU5</td>
-      <td>https://discord.com/invite/cU7vmVW</td>
-    </tr>
-    <tr>
-      <th>github</th>
-      <td>https://github.com/Uniswap</td>
-      <td>https://github.com/compound-finance/compound-p...</td>
-    </tr>
-    <tr>
-      <th>createdAt</th>
-      <td>2021-12-08T06:12:47.532Z</td>
-      <td>2021-12-08T06:11:16.990Z</td>
-    </tr>
-    <tr>
-      <th>organizationId</th>
-      <td>fe6aa70f-4877-4f6d-9c18-9a8cafc1fe28</td>
-      <td>52bf381b-79a8-4498-8504-41961beda494</td>
-    </tr>
-    <tr>
-      <th>daoId</th>
-      <td>4f466e08-9125-40fd-ba15-77552dec7c65</td>
-      <td>a3382dd2-bb02-4aef-845d-f65229ec9e3e</td>
-    </tr>
-    <tr>
-      <th>isDisplayed</th>
-      <td>True</td>
-      <td>True</td>
-    </tr>
-    <tr>
-      <th>platform</th>
-      <td>6</td>
-      <td>6</td>
+      <th>socials</th>
+      <td>[{'id': 'bb9cfcf4-fee5-4d53-9082-1f50de1d5b6a'...</td>
+      <td>[{'id': '61add28c-7378-45cf-ad8d-f1ff857d4ae2'...</td>
     </tr>
   </tbody>
 </table>
 </div></div>
 </div>
 </section>
-<section id="Get-dao-indices">
-<h3>Get dao indices<a class="headerlink" href="#Get-dao-indices" title="Permalink to this headline"></a></h3>
-<p>Returns financial indices for given DAO(s) like the Gini Index or the Herfindahl–Hirschman index</p>
+<section id="Get-dao-activity">
+<h3>Get dao activity<a class="headerlink" href="#Get-dao-activity" title="Permalink to this headline"></a></h3>
+<p>Returns activity for a given DAO or list of DAOs</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_indices</span><span class="p">(</span><span class="n">dao_slugs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Uniswap&quot;</span><span class="p">,</span> <span class="s2">&quot;Compound&quot;</span><span class="p">,</span> <span class="s2">&quot;Olympus DAO&quot;</span><span class="p">,</span> <span class="s2">&quot;Aave&quot;</span><span class="p">,</span> <span class="s2">&quot;Gnosis&quot;</span><span class="p">])</span>
-<span class="n">indices</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">activity</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_activity</span><span class="p">(</span><span class="n">dao_slugs</span><span class="o">=</span><span class="n">daos</span><span class="p">)</span>
+<span class="n">activity</span>
 </pre></div>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Uniswap</th>
-      <th>Compound</th>
-      <th>Olympus DAO</th>
-      <th>Aave</th>
-      <th>Gnosis</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>giniIndex</th>
-      <td>None</td>
-      <td>None</td>
-      <td>1.00</td>
-      <td>0.99</td>
-      <td>1.00</td>
-    </tr>
-    <tr>
-      <th>HHIndex</th>
-      <td>620.0</td>
-      <td>1217.0</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>HHIndexTop20</th>
-      <td>1226.0</td>
-      <td>2544.0</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-  </tbody>
-</table>
-</div></div>
-</div>
-</section>
-<section id="Get-dao-proposals">
-<h3>Get dao proposals<a class="headerlink" href="#Get-dao-proposals" title="Permalink to this headline"></a></h3>
-<p>Returns information about governance proposals for given DAO(s)</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">proposals</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_proposals</span><span class="p">(</span><span class="n">dao_slugs</span><span class="o">=</span><span class="n">daos</span><span class="p">)</span>
-<span class="n">proposals</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1298,172 +1215,156 @@ div.rendered_html tbody tr:hover {
     .dataframe thead tr th {
         text-align: left;
     }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
 </style>
 <table border="1" class="dataframe">
   <thead>
     <tr>
       <th></th>
-      <th colspan="10" halign="left">Uniswap</th>
-      <th>...</th>
-      <th colspan="10" halign="left">Compound</th>
+      <th colspan="3" halign="left">Uniswap</th>
+      <th colspan="3" halign="left">Compound</th>
     </tr>
     <tr>
       <th></th>
-      <th>0</th>
-      <th>createdAt</th>
-      <th>description</th>
-      <th>id</th>
-      <th>proposalNativeId</th>
-      <th>proposer</th>
-      <th>protocolAddress</th>
-      <th>removed</th>
-      <th>status</th>
-      <th>title</th>
-      <th>...</th>
-      <th>proposalNativeId</th>
-      <th>removed</th>
+      <th>month</th>
+      <th>proposals</th>
       <th>votes</th>
-      <th>votesShares</th>
-      <th>votesFor</th>
-      <th>votesForShares</th>
-      <th>votesAgainst</th>
-      <th>votesAgainstShares</th>
-      <th>votesAbstained</th>
-      <th>votesAbstainedShares</th>
+      <th>month</th>
+      <th>proposals</th>
+      <th>votes</th>
+    </tr>
+    <tr>
+      <th>createdAt</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>NaN</td>
-      <td>2021-08-14T01:06:23.000Z</td>
-      <td># Community-Enabled Analytics\n\n*Past discuss...</td>
-      <td>4495d852-fbd8-45ac-9f83-f06a24e0bcad</td>
-      <td>2.0</td>
-      <td>0x52886bd557Eb46b70949D7C857230d6a32F6D119</td>
-      <td>0xc4e172459f1e7939d522503b81afaac1014ce6f6</td>
-      <td>False</td>
-      <td>ProposalCanceled</td>
-      <td># Community-Enabled Analytics\n\n*Past discuss...</td>
-      <td>...</td>
-      <td>8</td>
-      <td>False</td>
-      <td>69</td>
-      <td>142784</td>
-      <td>64</td>
-      <td>1412959</td>
+      <th>2021-04-01</th>
+      <td>04</td>
+      <td>0</td>
+      <td>66</td>
+      <td>04</td>
+      <td>3</td>
+      <td>284</td>
+    </tr>
+    <tr>
+      <th>2021-05-01</th>
+      <td>05</td>
+      <td>6</td>
+      <td>1972</td>
+      <td>05</td>
+      <td>3</td>
+      <td>86</td>
+    </tr>
+    <tr>
+      <th>2021-06-01</th>
+      <td>06</td>
       <td>5</td>
-      <td>15000</td>
-      <td>0</td>
-      <td>0</td>
+      <td>2295</td>
+      <td>06</td>
+      <td>7</td>
+      <td>74</td>
     </tr>
     <tr>
-      <th>1</th>
-      <td>NaN</td>
-      <td>2021-06-12T14:33:20.000Z</td>
-      <td># DeFi Education Fund\n\n\nProposal to allocat...</td>
-      <td>53dfbd23-c648-4f9c-9fd5-2ab2b2f38892</td>
-      <td>5.0</td>
-      <td>0x61c8D4e4BE6477Bb49791540Ff297Ef30Eaa01c2</td>
-      <td>0x5e4be8bc9637f0eaa1a755019e06a68ce081d58f</td>
-      <td>False</td>
-      <td>ProposalCreated</td>
-      <td># DeFi Education Fund\n\n\nProposal to allocat...</td>
-      <td>...</td>
-      <td>60</td>
-      <td>False</td>
-      <td>38</td>
-      <td>124952</td>
-      <td>33</td>
-      <td>1093829</td>
+      <th>2021-07-01</th>
+      <td>07</td>
+      <td>12</td>
+      <td>4134</td>
+      <td>07</td>
       <td>4</td>
-      <td>151000</td>
+      <td>184</td>
+    </tr>
+    <tr>
+      <th>2021-08-01</th>
+      <td>08</td>
+      <td>10</td>
+      <td>1013</td>
+      <td>08</td>
+      <td>6</td>
+      <td>85</td>
+    </tr>
+    <tr>
+      <th>2021-09-01</th>
+      <td>09</td>
       <td>1</td>
-      <td>4773</td>
+      <td>228</td>
+      <td>09</td>
+      <td>6</td>
+      <td>127</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>NaN</td>
-      <td>2020-12-17T23:59:31.000Z</td>
-      <td>https://snapshot.page/#/uniswap/proposal/QmQJu...</td>
-      <td>68e94b70-0a69-468c-a022-412fa21f244b</td>
-      <td>3.0</td>
-      <td>0x76f54Eeb0D33a2A2c5CCb72FE12542A56f35d67C</td>
-      <td>0x5e4be8bc9637f0eaa1a755019e06a68ce081d58f</td>
-      <td>False</td>
-      <td>ProposalExecuted</td>
-      <td>https://snapshot.page/#/uniswap/proposal/QmQJu...</td>
-      <td>...</td>
-      <td>48</td>
-      <td>False</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <th>2021-10-01</th>
+      <td>10</td>
+      <td>2</td>
+      <td>641</td>
+      <td>10</td>
+      <td>5</td>
+      <td>87</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>NaN</td>
-      <td>2020-10-12T18:08:52.000Z</td>
-      <td># Reduce UNI Governance Proposal &amp; Quorum Thre...</td>
-      <td>7617cc36-375a-48dc-8170-6c8fcaa44262</td>
-      <td>1.0</td>
-      <td>0x7e4A8391C728fEd9069B2962699AB416628B19Fa</td>
-      <td>0x5e4be8bc9637f0eaa1a755019e06a68ce081d58f</td>
-      <td>False</td>
-      <td>ProposalCreated</td>
-      <td># Reduce UNI Governance Proposal &amp; Quorum Thre...</td>
-      <td>...</td>
-      <td>62</td>
-      <td>False</td>
-      <td>29</td>
-      <td>72972</td>
-      <td>28</td>
-      <td>729761</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
+      <th>2021-11-01</th>
+      <td>11</td>
+      <td>7</td>
+      <td>1274</td>
+      <td>11</td>
+      <td>9</td>
+      <td>151</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>NaN</td>
-      <td>2021-06-22T22:07:36.000Z</td>
-      <td># DeFi Education Fund\n\n#### (Previously know...</td>
-      <td>855e9e7e-42f5-4e11-96bd-e32a0fc96457</td>
-      <td>1.0</td>
-      <td>0x61c8D4e4BE6477Bb49791540Ff297Ef30Eaa01c2</td>
-      <td>0xc4e172459f1e7939d522503b81afaac1014ce6f6</td>
-      <td>False</td>
-      <td>ProposalExecuted</td>
-      <td># DeFi Education Fund\n\n#### (Previously know...</td>
-      <td>...</td>
-      <td>16</td>
-      <td>False</td>
-      <td>104</td>
-      <td>105779</td>
+      <th>2021-12-01</th>
+      <td>12</td>
+      <td>2</td>
+      <td>1048</td>
+      <td>12</td>
+      <td>6</td>
       <td>84</td>
-      <td>533943</td>
-      <td>20</td>
-      <td>523950</td>
-      <td>0</td>
-      <td>0</td>
+    </tr>
+    <tr>
+      <th>2022-01-01</th>
+      <td>01</td>
+      <td>1</td>
+      <td>354</td>
+      <td>01</td>
+      <td>5</td>
+      <td>51</td>
+    </tr>
+    <tr>
+      <th>2022-02-01</th>
+      <td>02</td>
+      <td>5</td>
+      <td>1149</td>
+      <td>02</td>
+      <td>3</td>
+      <td>49</td>
+    </tr>
+    <tr>
+      <th>2022-03-01</th>
+      <td>03</td>
+      <td>9</td>
+      <td>9845</td>
+      <td>03</td>
+      <td>8</td>
+      <td>225</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 35 columns</p>
 </div></div>
 </div>
 </section>
 <section id="Get-dao-members">
 <h3>Get dao members<a class="headerlink" href="#Get-dao-members" title="Permalink to this headline"></a></h3>
-<p>Returns information about the Members of given DAO(s) and their respective token balances</p>
+<p>Returns information about the top shareholders of given DAO(s) and their respective token balances</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">members</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_members</span><span class="p">(</span><span class="n">dao_slugs</span><span class="o">=</span><span class="n">daos</span><span class="p">)</span>
@@ -1472,198 +1373,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="10" halign="left">Uniswap</th>
-      <th>...</th>
-      <th colspan="10" halign="left">Compound</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th>0</th>
-      <th>balance</th>
-      <th>memberAddress</th>
-      <th>proposalsCreated</th>
-      <th>proposalsVoted</th>
-      <th>proposalsVotedAbstained</th>
-      <th>proposalsVotedAgainst</th>
-      <th>proposalsVotedFor</th>
-      <th>votesAbstainedShares</th>
-      <th>votesAgainstShares</th>
-      <th>...</th>
-      <th>balance</th>
-      <th>proposalsCreated</th>
-      <th>proposalsVoted</th>
-      <th>proposalsVotedFor</th>
-      <th>proposalsVotedAgainst</th>
-      <th>proposalsVotedAbstained</th>
-      <th>votesShares</th>
-      <th>votesForShares</th>
-      <th>votesAgainstShares</th>
-      <th>votesAbstainedShares</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>NaN</td>
-      <td>1609915.0</td>
-      <td>0x1494ca1f11d487c2bbe4543e90080aeba4ba3c2b</td>
-      <td>0.0</td>
-      <td>11.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-      <td>10.0</td>
-      <td>0</td>
-      <td>20086</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>5</td>
-      <td>5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>NaN</td>
-      <td>3400635.0</td>
-      <td>0xa29332b560103d52f758b978e0661420a9d40cb5</td>
-      <td>0.0</td>
-      <td>3.0</td>
-      <td>0.0</td>
-      <td>2.0</td>
-      <td>1.0</td>
-      <td>0</td>
-      <td>1088203</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>480</td>
-      <td>480</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>NaN</td>
-      <td>1004714.0</td>
-      <td>0x04ae7e5019555dd1d54fb8c482b0a399ef80cc7e</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>NaN</td>
-      <td>2149576.0</td>
-      <td>0x0739e7abe029434c4357e247a397d80b64301ef9</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>NaN</td>
-      <td>1600000.0</td>
-      <td>0x087256f28f0d9762b89d4549301df4b7e7b5cda3</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 23 columns</p>
-</div></div>
-</div>
-</section>
-<section id="Get-dao-voter-coalitions">
-<h3>Get dao voter coalitions<a class="headerlink" href="#Get-dao-voter-coalitions" title="Permalink to this headline"></a></h3>
-<p>Returns information about different voting coalitions for given DAO(s)</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coalitions</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_voter_coalitions</span><span class="p">(</span><span class="n">dao_slugs</span><span class="o">=</span><span class="n">daos</span><span class="p">)</span>
-<span class="n">coalitions</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1690,83 +1400,83 @@ div.rendered_html tbody tr:hover {
     </tr>
     <tr>
       <th></th>
-      <th>coalition</th>
-      <th>subsetLength</th>
-      <th>timesVotedTogether</th>
-      <th>timesVotedTogetherFor</th>
-      <th>timesVotedTogetherAgainst</th>
-      <th>coalition</th>
-      <th>subsetLength</th>
-      <th>timesVotedTogether</th>
-      <th>timesVotedTogetherFor</th>
-      <th>timesVotedTogetherAgainst</th>
+      <th>address</th>
+      <th>memberBalance</th>
+      <th>tokenSharesPercentage</th>
+      <th>name</th>
+      <th>avatar</th>
+      <th>address</th>
+      <th>memberBalance</th>
+      <th>tokenSharesPercentage</th>
+      <th>name</th>
+      <th>avatar</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0xb40ff1ca580090b386048228ae7140b0dde7f1c5, 0x...</td>
-      <td>2</td>
-      <td>7</td>
-      <td>5</td>
-      <td>2</td>
-      <td>0x54a37d93e57c5da659f508069cf65a381b61e189, 0x...</td>
-      <td>2</td>
-      <td>55</td>
-      <td>45</td>
-      <td>10</td>
+      <td>0x1a9c8182c09f50c8318d769245bea52c32be35bc</td>
+      <td>2.275511e+08</td>
+      <td>22.755108</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0x2775b1c75658be0f640272ccb8c72ac986009e38</td>
+      <td>2.665390e+06</td>
+      <td>26.653895</td>
+      <td>None</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0x84bb5196f0085d61a7c9ac5b903a26d7f009ac13, 0x...</td>
-      <td>2</td>
-      <td>6</td>
-      <td>0</td>
-      <td>6</td>
-      <td>0x84e39a52d7f3f8fb63723782653d4cf71c465a95, 0x...</td>
-      <td>2</td>
-      <td>45</td>
-      <td>41</td>
-      <td>4</td>
+      <td>0x4b4e140d1f131fdad6fb59c13af796fd194e4135</td>
+      <td>8.600000e+07</td>
+      <td>8.600000</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0x70e36f6bf80a52b3b46b3af8e106cc0ed743e8e4</td>
+      <td>5.684706e+05</td>
+      <td>5.684706</td>
+      <td>None</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0x2533321a436578c60a176bd7cb0f9b2590a98ea1, 0x...</td>
-      <td>2</td>
-      <td>6</td>
-      <td>0</td>
-      <td>6</td>
-      <td>0x54a37d93e57c5da659f508069cf65a381b61e189, 0x...</td>
-      <td>2</td>
-      <td>43</td>
-      <td>39</td>
-      <td>4</td>
+      <td>0xe3953d9d317b834592ab58ab2c7a6ad22b54075d</td>
+      <td>7.192942e+07</td>
+      <td>7.192942</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0x7587caefc8096f5f40acb83a09df031a018c66ec</td>
+      <td>3.645555e+05</td>
+      <td>3.645555</td>
+      <td>None</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0x5d8908afee1df9f7f0830105f8be828f97ce9e68, 0x...</td>
-      <td>2</td>
-      <td>5</td>
-      <td>3</td>
-      <td>2</td>
-      <td>0x84e39a52d7f3f8fb63723782653d4cf71c465a95, 0x...</td>
-      <td>2</td>
-      <td>43</td>
-      <td>43</td>
-      <td>0</td>
+      <td>0x3d30b1ab88d487b0f3061f40de76845bec3f1e94</td>
+      <td>4.300000e+07</td>
+      <td>4.300000</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0xf977814e90da44bfa03b6295a0616a897441acec</td>
+      <td>3.227470e+05</td>
+      <td>3.227470</td>
+      <td>None</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0xa29332b560103d52f758b978e0661420a9d40cb5, 0x...</td>
-      <td>2</td>
-      <td>5</td>
-      <td>1</td>
-      <td>4</td>
-      <td>0x54a37d93e57c5da659f508069cf65a381b61e189, 0x...</td>
-      <td>2</td>
-      <td>42</td>
-      <td>40</td>
-      <td>2</td>
+      <td>0x47173b170c64d16393a52e6c480b3ad8c302ba1e</td>
+      <td>2.467987e+07</td>
+      <td>2.467987</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0xfa9b5f7fdc8ab34aaf3099889475d47febf830d7</td>
+      <td>3.059573e+05</td>
+      <td>3.059573</td>
+      <td>None</td>
+      <td>None</td>
     </tr>
   </tbody>
 </table>
@@ -1777,7 +1487,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get dao financials<a class="headerlink" href="#Get-dao-financials" title="Permalink to this headline"></a></h3>
 <p>Returns information about the treasury composition of given DAO(s)</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">financials</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_dao_financials</span><span class="p">(</span><span class="n">dao_slugs</span><span class="o">=</span><span class="n">daos</span><span class="p">)</span>
@@ -1786,7 +1496,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -1808,148 +1518,112 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr>
       <th></th>
-      <th colspan="10" halign="left">Uniswap</th>
-      <th colspan="10" halign="left">Compound</th>
+      <th colspan="7" halign="left">Uniswap</th>
+      <th colspan="7" halign="left">Compound</th>
     </tr>
     <tr>
       <th></th>
-      <th>totalIn</th>
-      <th>totalInUSD</th>
-      <th>totalOut</th>
-      <th>totalOutUSD</th>
-      <th>tokenSymbol</th>
-      <th>tokenBalance</th>
       <th>tokenName</th>
-      <th>usdPrice</th>
-      <th>usdValue</th>
-      <th>tokenAddress</th>
-      <th>totalIn</th>
-      <th>totalInUSD</th>
-      <th>totalOut</th>
-      <th>totalOutUSD</th>
       <th>tokenSymbol</th>
-      <th>tokenBalance</th>
-      <th>tokenName</th>
-      <th>usdPrice</th>
-      <th>usdValue</th>
+      <th>tokenIcon</th>
       <th>tokenAddress</th>
+      <th>tokenBalance</th>
+      <th>usdValue</th>
+      <th>currencyPercentage</th>
+      <th>tokenName</th>
+      <th>tokenSymbol</th>
+      <th>tokenIcon</th>
+      <th>tokenAddress</th>
+      <th>tokenBalance</th>
+      <th>usdValue</th>
+      <th>currencyPercentage</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>0.0</td>
-      <td>0.000000e+00</td>
-      <td>ETH</td>
-      <td>1.659834e-03</td>
-      <td>Ethereum</td>
-      <td>4.330122e+03</td>
-      <td>7.187282e+00</td>
-      <td>NaN</td>
-      <td>5.299795e-02</td>
-      <td>2.294876e+02</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>ETH</td>
-      <td>0.000000e+00</td>
-      <td>Ethereum</td>
-      <td>4330.121671</td>
-      <td>0.000000e+00</td>
-      <td>NaN</td>
+      <td>UNI</td>
+      <td>UNI</td>
+      <td>https://token-icons.s3.amazonaws.com/0x1f9840a...</td>
+      <td>0x1f9840a85d5af5bf1d1762f925bdaddc4201f984</td>
+      <td>2.275511e+08</td>
+      <td>2.218253e+09</td>
+      <td>9.986133e+01</td>
+      <td>PKG</td>
+      <td>PKG</td>
+      <td>None</td>
+      <td>0x02f2d4a04e6e01ace88bd2cd632875543b2ef577</td>
+      <td>225.000000</td>
+      <td>0.002918</td>
+      <td>9.383392e-10</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>3.469227e+08</td>
-      <td>6.116253e+09</td>
-      <td>173519500.0</td>
-      <td>3.059152e+09</td>
-      <td>UNI</td>
-      <td>1.734032e+08</td>
-      <td>Uniswap</td>
-      <td>1.763002e+01</td>
-      <td>3.057101e+09</td>
-      <td>0x1f9840a85d5af5bf1d1762f925bdaddc4201f984</td>
-      <td>6.115681e+06</td>
-      <td>1.347850e+09</td>
-      <td>3.168359e+06</td>
-      <td>6.982824e+08</td>
-      <td>COMP</td>
-      <td>2.947322e+06</td>
-      <td>Compound</td>
-      <td>220.392488</td>
-      <td>6.495677e+08</td>
-      <td>0xc00e94cb662c3520282e6f5717214004a7f26888</td>
+      <td>UNI-V1</td>
+      <td>UNI-V1</td>
+      <td>None</td>
+      <td>0x22d8432cc7aa4f8712a655fc4cdfb1baec29fca9</td>
+      <td>2.245000e+01</td>
+      <td>3.080331e+06</td>
+      <td>1.386704e-01</td>
+      <td>BAT</td>
+      <td>BAT</td>
+      <td>https://s3.amazonaws.com/token-icons/0x0d8775f...</td>
+      <td>0x0d8775f648430679a709e98d2b0cb6250d2887ef</td>
+      <td>3505.146444</td>
+      <td>2845.497748</td>
+      <td>9.150355e-04</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>9.000000e+01</td>
-      <td>6.299128e+00</td>
-      <td>0.0</td>
-      <td>0.000000e+00</td>
-      <td>ACE</td>
-      <td>9.000000e+01</td>
-      <td>ACENT</td>
-      <td>6.999031e-02</td>
-      <td>6.299128e+00</td>
-      <td>0xec5483804e637d45cde22fa0869656b64b5ab1ab</td>
-      <td>3.505146e+03</td>
-      <td>4.506155e+03</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>BAT</td>
-      <td>3.505146e+03</td>
-      <td>BAT</td>
-      <td>1.285583</td>
-      <td>4.506155e+03</td>
-      <td>0x0d8775f648430679a709e98d2b0cb6250d2887ef</td>
+      <td>SDOG</td>
+      <td>SDOG</td>
+      <td>https://token-icons.s3.amazonaws.com/0x537edd5...</td>
+      <td>0x537edd52ebcb9f48ff2f8a28c51fcdb9d6a6e0d4</td>
+      <td>7.350000e+02</td>
+      <td>1.321184e-04</td>
+      <td>5.947710e-12</td>
+      <td>UNI</td>
+      <td>UNI</td>
+      <td>https://token-icons.s3.amazonaws.com/0x1f9840a...</td>
+      <td>0x1f9840a85d5af5bf1d1762f925bdaddc4201f984</td>
+      <td>400.000000</td>
+      <td>3899.348616</td>
+      <td>1.253926e-03</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>2.000000e+01</td>
-      <td>3.140000e+01</td>
-      <td>0.0</td>
-      <td>0.000000e+00</td>
-      <td>WJXN</td>
-      <td>2.000000e+01</td>
-      <td>Wrapped JAXNET</td>
-      <td>1.570000e+00</td>
-      <td>3.140000e+01</td>
-      <td>0xca1262e77fb25c0a4112cfc9bad3ff54f617f2e6</td>
-      <td>1.711724e+02</td>
-      <td>1.711724e+02</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>SAI</td>
-      <td>1.711724e+02</td>
-      <td>Sai Stablecoin v1.0</td>
-      <td>1.000000</td>
-      <td>1.711724e+02</td>
-      <td>0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359</td>
+      <td>XBT</td>
+      <td>XBT</td>
+      <td>None</td>
+      <td>0x64fb96d0395f6bf105f35233911e3df2c5bf4ce8</td>
+      <td>1.200000e+01</td>
+      <td>3.136542e-01</td>
+      <td>1.412009e-08</td>
+      <td>WBTC</td>
+      <td>WBTC</td>
+      <td>https://token-icons.s3.amazonaws.com/0x2260fac...</td>
+      <td>0x2260fac5e5542a773aa44fbcfedf7c193bc2c599</td>
+      <td>0.334977</td>
+      <td>14072.583366</td>
+      <td>4.525364e-03</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>7.350000e+02</td>
-      <td>3.484708e-04</td>
-      <td>0.0</td>
-      <td>0.000000e+00</td>
-      <td>SDOG</td>
-      <td>7.350000e+02</td>
-      <td>SDOG</td>
-      <td>4.741100e-07</td>
-      <td>3.484708e-04</td>
-      <td>0x537edd52ebcb9f48ff2f8a28c51fcdb9d6a6e0d4</td>
-      <td>5.000000e+02</td>
-      <td>7.321177e-04</td>
-      <td>0.000000e+00</td>
-      <td>0.000000e+00</td>
-      <td>FREE</td>
-      <td>5.000000e+02</td>
-      <td>Free Coin</td>
-      <td>0.000001</td>
-      <td>7.321177e-04</td>
-      <td>0x2f141ce366a2462f02cea3d12cf93e4dca49e4fd</td>
+      <td>LOON</td>
+      <td>LOON</td>
+      <td>None</td>
+      <td>0x7c5d5100b339fe7d995a893af6cb496b9474373c</td>
+      <td>4.000000e+00</td>
+      <td>2.039165e-02</td>
+      <td>9.179916e-10</td>
+      <td>DAI</td>
+      <td>DAI</td>
+      <td>https://s3.amazonaws.com/token-icons/0x6b17547...</td>
+      <td>0x6b175474e89094c44da98b954eedeac495271d0f</td>
+      <td>256.445835</td>
+      <td>255.987595</td>
+      <td>8.231873e-05</td>
     </tr>
   </tbody>
 </table>
@@ -1961,11 +1635,11 @@ div.rendered_html tbody tr:hover {
 <h2>Members Specific Functions<a class="headerlink" href="#Members-Specific-Functions" title="Permalink to this headline"></a></h2>
 <p>These functions return information about DAO Members</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[17]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pubkey&#39;s for users active in governanace</span>
-<span class="n">pubkeys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Ven Gist&quot;</span><span class="p">,</span> <span class="s2">&quot;scottrepreneur&quot;</span><span class="p">]</span>
+<span class="n">pubkeys</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Cr1pto&quot;</span><span class="p">,</span> <span class="s2">&quot;OOXili&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1973,7 +1647,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get top members<a class="headerlink" href="#Get-top-members" title="Permalink to this headline"></a></h3>
 <p>Returns a dataframe of basic information for the the top ‘count’ Members tracked by DeepDAO amount of DAO’s particpating in. count default is 10</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_top_members</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
@@ -1982,7 +1656,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2009,6 +1683,8 @@ div.rendered_html tbody tr:hover {
       <th>description</th>
       <th>avatar</th>
       <th>aum</th>
+      <th>participationRelativeScore</th>
+      <th>participationRank</th>
       <th>rank</th>
       <th>daoAmount</th>
       <th>proposalsAmount</th>
@@ -2020,73 +1696,83 @@ div.rendered_html tbody tr:hover {
   <tbody>
     <tr>
       <th>0</th>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>Ven Gist</td>
-      <td>Design Thinking &amp; Execution re: Blockchains IRL</td>
-      <td>https://ipfs.io/ipfs/QmX5zzpTqkr1Nc8WtSX5kiqaK...</td>
-      <td>189086.55</td>
+      <td>0xb9b93bf2db3678b010e71ef701d763aee144e93e</td>
+      <td>Cr1pto</td>
+      <td>None</td>
+      <td>None</td>
+      <td>1632.915108</td>
+      <td>99.67</td>
+      <td>6</td>
       <td>1</td>
-      <td>27</td>
-      <td>32</td>
-      <td>219</td>
+      <td>81</td>
       <td>0</td>
-      <td>{'daos': [{'id': 'a3382dd2-bb02-4aef-845d-f652...</td>
+      <td>677</td>
+      <td>68.19</td>
+      <td>{'daos': [], 'tokens': [{'usd': 35.21, 'value'...</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0x68d36dcbdd7bbf206e27134f28103abe7cf972df</td>
-      <td>scottrepreneur</td>
+      <td>0x76da9f88e63a85ba8bfa19f3821d5a271753d3dc</td>
+      <td>lordgiv.eth</td>
       <td>None</td>
-      <td>https://ipfs.io/ipfs/QmTTuFfjez1z6i7nYGaxJvi7C...</td>
-      <td>470902.40</td>
+      <td>None</td>
+      <td>53407.125414</td>
+      <td>97.89</td>
+      <td>38</td>
       <td>2</td>
-      <td>24</td>
-      <td>34</td>
-      <td>68</td>
+      <td>78</td>
       <td>0</td>
-      <td>{'daos': [{'id': 'a3382dd2-bb02-4aef-845d-f652...</td>
+      <td>385</td>
+      <td>40.08</td>
+      <td>{'daos': [], 'tokens': [{'usd': 20.22, 'value'...</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0x865c2f85c9fea1c6ac7f53de07554d68cb92ed88</td>
-      <td>Peter 'pet3rpan'</td>
-      <td>MetaCartel.</td>
-      <td>https://ipfs.io/ipfs/QmYxQz6ihvTX6JZBqANn7rzcw...</td>
-      <td>182924.13</td>
+      <td>0x83c9440dc34da00c47a0d4dc2b598d7bdb1b53f7</td>
+      <td>OOXili</td>
+      <td>None</td>
+      <td>https://ipfs.io/ipfs/QmeLbLGdkHPfDFmLEktYEe3ce...</td>
+      <td>42274.637121</td>
+      <td>99.72</td>
+      <td>5</td>
       <td>3</td>
-      <td>22</td>
-      <td>114</td>
-      <td>171</td>
+      <td>70</td>
       <td>0</td>
-      <td>{'daos': [{'id': 'badger.aragonid.eth', 'aum':...</td>
+      <td>733</td>
+      <td>80.74</td>
+      <td>{'daos': [], 'tokens': [{'usd': 0.75, 'value':...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0xced608aa29bb92185d9b6340adcbfa263dae075b</td>
-      <td>Deke</td>
-      <td>Pokemol/daohaus/metacartel/RaidGuild</td>
-      <td>https://ipfs.io/ipfs/QmZSdi7FdSkX8DpXRgEcyDFwC...</td>
-      <td>130558.39</td>
+      <td>0xd84e11bee5d555ccd905817cb8cbbd5b6e6c4f0d</td>
+      <td>keysplatz.eth</td>
+      <td>None</td>
+      <td>None</td>
+      <td>207575.976208</td>
+      <td>88.9</td>
+      <td>200</td>
       <td>4</td>
-      <td>18</td>
-      <td>38</td>
-      <td>98</td>
-      <td>0</td>
-      <td>{'daos': [{'id': 'badger.aragonid.eth', 'aum':...</td>
+      <td>66</td>
+      <td>1</td>
+      <td>166</td>
+      <td>21.61</td>
+      <td>{'daos': [], 'tokens': [{'usd': 86.55, 'value'...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0x5b93ff82faaf241c15997ea3975419dddd8362c5</td>
-      <td>Coopahtroopa</td>
-      <td>Chance favors the connected mind</td>
-      <td>https://ipfs.io/ipfs/QmdzD4jg1JviKU3FkKNePH9sv...</td>
-      <td>420974.80</td>
+      <td>0xd9293636ee3aa663fc563adb0912b0705dafb62c</td>
+      <td>tlmlit.eth</td>
+      <td>None</td>
+      <td>None</td>
+      <td>4425.198354</td>
+      <td>99.83</td>
+      <td>3</td>
       <td>5</td>
-      <td>17</td>
-      <td>23</td>
-      <td>121</td>
+      <td>66</td>
       <td>0</td>
-      <td>{'daos': [{'id': 'badger.aragonid.eth', 'aum':...</td>
+      <td>1231</td>
+      <td>169.97</td>
+      <td>{'daos': [], 'tokens': [{'usd': 112.88, 'value...</td>
     </tr>
   </tbody>
 </table>
@@ -2097,7 +1783,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get member info<a class="headerlink" href="#Get-member-info" title="Permalink to this headline"></a></h3>
 <p>Returns basic information for given member(s)</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">members</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_member_info</span><span class="p">(</span><span class="n">pubkeys</span><span class="o">=</span><span class="n">pubkeys</span><span class="p">)</span>
@@ -2106,7 +1792,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2128,299 +1814,113 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>Ven Gist</th>
-      <th>scottrepreneur</th>
+      <th>Cr1pto</th>
+      <th>OOXili</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>address</th>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>0x68d36dcbdd7bbf206e27134f28103abe7cf972df</td>
+      <td>0xb9b93bf2db3678b010e71ef701d763aee144e93e</td>
+      <td>0x83c9440dc34da00c47a0d4dc2b598d7bdb1b53f7</td>
     </tr>
     <tr>
       <th>name</th>
-      <td>Ven Gist</td>
-      <td>scottrepreneur</td>
+      <td>Cr1pto</td>
+      <td>OOXili</td>
     </tr>
     <tr>
       <th>description</th>
-      <td>Design Thinking &amp; Execution re: Blockchains IRL</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <th>website</th>
-      <td>None</td>
-      <td>None</td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <th>avatar</th>
-      <td>https://ipfs.io/ipfs/QmX5zzpTqkr1Nc8WtSX5kiqaK...</td>
-      <td>https://ipfs.io/ipfs/QmTTuFfjez1z6i7nYGaxJvi7C...</td>
-    </tr>
-    <tr>
-      <th>daoAmount</th>
-      <td>27</td>
-      <td>24</td>
-    </tr>
-    <tr>
-      <th>proposalsAmount</th>
-      <td>32</td>
-      <td>34</td>
-    </tr>
-    <tr>
-      <th>votesAmount</th>
-      <td>219</td>
-      <td>68</td>
+      <td></td>
+      <td>https://ipfs.io/ipfs/https://ipfs.io/ipfs/QmeL...</td>
     </tr>
     <tr>
       <th>aum</th>
-      <td>189086.55</td>
-      <td>470902.4</td>
-    </tr>
-    <tr>
-      <th>createdAt</th>
-      <td>2021-09-01T11:49:32.011Z</td>
-      <td>2021-09-01T11:49:32.011Z</td>
-    </tr>
-    <tr>
-      <th>daos</th>
-      <td>[{'name': 'Compound', 'aum': 1591634524.52387,...</td>
-      <td>[{'name': 'Compound', 'aum': 1591634524.52387,...</td>
-    </tr>
-    <tr>
-      <th>twitter</th>
-      <td>None</td>
-      <td>https://twitter.com/scottrepreneur</td>
-    </tr>
-    <tr>
-      <th>github</th>
       <td></td>
-      <td>https://gist.githubusercontent.com/scottrepren...</td>
+      <td></td>
     </tr>
     <tr>
-      <th>participationScore</th>
+      <th>personalInfo</th>
       <td>None</td>
       <td>None</td>
     </tr>
     <tr>
       <th>totalAum</th>
-      <td>189086.55</td>
-      <td>470902.4</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>createdAt</th>
+      <td>N/A</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <th>github</th>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>twitter</th>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <th>totalDaos</th>
-      <td>27</td>
-      <td>24</td>
+      <td>75</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>totalOrgs</th>
+      <td>75</td>
+      <td>61</td>
     </tr>
     <tr>
       <th>totalProposals</th>
-      <td>32</td>
-      <td>34</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>totalVotes</th>
-      <td>219</td>
-      <td>68</td>
+      <td>729</td>
+      <td>822</td>
+    </tr>
+    <tr>
+      <th>proposalsAmount</th>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>participationScore</th>
+      <td>68.19</td>
+      <td>80.74</td>
+    </tr>
+    <tr>
+      <th>relativeScore</th>
+      <td>99.666852</td>
+      <td>99.722376</td>
+    </tr>
+    <tr>
+      <th>daos</th>
+      <td>[{'daoId': '73fc246c-57de-45c0-ac55-92d2b3638f...</td>
+      <td>[{'daoId': '01d90579-a3b4-4ed8-a77b-fb2f9ddea5...</td>
     </tr>
     <tr>
       <th>tokens</th>
-      <td>[{'usd': 43731.07, 'logo': None, 'name': 'Ethe...</td>
-      <td>[{'usd': 156368.27, 'logo': None, 'name': 'Cry...</td>
+      <td>[]</td>
+      <td>[]</td>
     </tr>
   </tbody>
 </table>
-</div></div>
-</div>
-</section>
-<section id="Get-member-proposals">
-<h3>Get member proposals<a class="headerlink" href="#Get-member-proposals" title="Permalink to this headline"></a></h3>
-<p>Returns proposal history for given member(s)</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">member_proposals</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_member_proposals</span><span class="p">(</span><span class="n">pubkeys</span><span class="o">=</span><span class="n">pubkeys</span><span class="p">)</span>
-<span class="n">member_proposals</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
-</pre></div>
-</div>
-<div class="output_area rendered_html docutils container">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="10" halign="left">Ven Gist</th>
-      <th>...</th>
-      <th colspan="10" halign="left">scottrepreneur</th>
-    </tr>
-    <tr>
-      <th></th>
-      <th>proposalNativeId</th>
-      <th>createdAt</th>
-      <th>title</th>
-      <th>description</th>
-      <th>proposerId</th>
-      <th>organizationId</th>
-      <th>firstName</th>
-      <th>middleName</th>
-      <th>lastName</th>
-      <th>userPicture</th>
-      <th>...</th>
-      <th>avatar</th>
-      <th>status</th>
-      <th>spaceId</th>
-      <th>spaceName</th>
-      <th>url</th>
-      <th>logo</th>
-      <th>feedActive</th>
-      <th>spaceKey</th>
-      <th>userName</th>
-      <th>postUrl</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0x1b3d7efb93ec432b0d1d56880c23303979b379e9-pro...</td>
-      <td>2021-03-08T16:50:57.000Z</td>
-      <td>funding proposal DADA.art</td>
-      <td>Grant winner</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>78381bd1-dbfc-46c3-ba1e-eab340417514</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>...</td>
-      <td>None</td>
-      <td>ACCEPTED</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0x1fd169a4f5c59acf79d0fd5d91d1201ef1bce9f1-pro...</td>
-      <td>2021-08-27T17:12:50.000Z</td>
-      <td>Shares for V2 Migration</td>
-      <td>Migrating funds to the V2 Moloch</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>645a478e-4244-46c0-8e3a-ca6492546e47</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>...</td>
-      <td>None</td>
-      <td>ACCEPTED</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0x1fd169a4f5c59acf79d0fd5d91d1201ef1bce9f1-pro...</td>
-      <td>2020-06-17T16:26:50.000Z</td>
-      <td>MGP 46: $12000 for The Minion (Raid Guild)</td>
-      <td>https://docs.google.com/document/d/1i7mwEKX_az...</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>645a478e-4244-46c0-8e3a-ca6492546e47</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>...</td>
-      <td>None</td>
-      <td>ACCEPTED</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0x1fd169a4f5c59acf79d0fd5d91d1201ef1bce9f1-pro...</td>
-      <td>2019-12-17T23:49:25.000Z</td>
-      <td>MGP 30: Odyssy to further Moloch toward a comp...</td>
-      <td>https://molochdao.discourse.group/t/mgp-odyssy...</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>645a478e-4244-46c0-8e3a-ca6492546e47</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>...</td>
-      <td>None</td>
-      <td>REJECTED</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0x2004cb1e8fb6d4476acdc9e1d37f717d3a83384d-pro...</td>
-      <td>2021-03-12T21:45:55.000Z</td>
-      <td>CCO contribution!</td>
-      <td>--</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>db8f02f3-ebc1-407a-9d20-778ea32faa70</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>...</td>
-      <td>None</td>
-      <td>ACCEPTED</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 56 columns</p>
 </div></div>
 </div>
 </section>
@@ -2428,7 +1928,7 @@ div.rendered_html tbody tr:hover {
 <h3>Get member votes<a class="headerlink" href="#Get-member-votes" title="Permalink to this headline"></a></h3>
 <p>Returns voting history for given member(s)</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">member_votes</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">get_member_votes</span><span class="p">(</span><span class="n">pubkeys</span><span class="o">=</span><span class="n">pubkeys</span><span class="p">)</span>
@@ -2436,8 +1936,17 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+https://golden-gate-server.deepdao.io/user/2/0xb9b93bf2db3678b010e71ef701d763aee144e93e/votes
+https://golden-gate-server.deepdao.io/user/2/0x83c9440dc34da00c47a0d4dc2b598d7bdb1b53f7/votes
+</pre></div></div>
+</div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -2459,160 +1968,168 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr>
       <th></th>
-      <th colspan="10" halign="left">Ven Gist</th>
+      <th colspan="10" halign="left">Cr1pto</th>
       <th>...</th>
-      <th colspan="10" halign="left">scottrepreneur</th>
+      <th colspan="10" halign="left">OOXili</th>
     </tr>
     <tr>
       <th></th>
-      <th>proposalId</th>
-      <th>createdAt</th>
-      <th>daoId</th>
+      <th>voter</th>
+      <th>organizationId</th>
       <th>daoName</th>
       <th>daoLogo</th>
-      <th>organizationId</th>
-      <th>proposerId</th>
-      <th>proposerName</th>
-      <th>proposerAvatar</th>
-      <th>title</th>
-      <th>...</th>
-      <th>organizationId</th>
-      <th>proposerId</th>
-      <th>proposerName</th>
-      <th>proposerAvatar</th>
-      <th>title</th>
-      <th>description</th>
-      <th>votesCount</th>
-      <th>status</th>
       <th>voteNativeId</th>
+      <th>proposalId</th>
       <th>voteChoice</th>
+      <th>createdAt</th>
+      <th>daoId</th>
+      <th>successful</th>
+      <th>...</th>
+      <th>createdAt</th>
+      <th>daoId</th>
+      <th>successful</th>
+      <th>platform</th>
+      <th>proposerId</th>
+      <th>description</th>
+      <th>snapshotProposalChoicesMappedToScores</th>
+      <th>title</th>
+      <th>status</th>
+      <th>choices</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1-pro...</td>
-      <td>2020-03-26T22:15:44.000Z</td>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1</td>
-      <td>Raid Guild</td>
-      <td>RaidGuild.jpg</td>
-      <td>3a5bc696-1c33-49a8-9cee-ba8089da6a6b</td>
-      <td>0x66b1de0f14a0ce971f7f248415063d44caf19398</td>
-      <td>Yalor</td>
-      <td>https://ipfs.io/ipfs/QmbK3qEYJCiyjUCjGpLLsk7bi...</td>
-      <td>Raid &lt;&gt;Dragon Quest Bounties</td>
-      <td>...</td>
-      <td>8c21c472-1533-4e88-9119-6266e0fcb158</td>
-      <td>0x865c2f85c9fea1c6ac7f53de07554d68cb92ed88</td>
-      <td>Peter 'pet3rpan'</td>
-      <td>https://ipfs.io/ipfs/QmYxQz6ihvTX6JZBqANn7rzcw...</td>
-      <td>Monthly Paladins Circle Reward</td>
-      <td>Monthly Paladins Circle Reward</td>
-      <td>2</td>
-      <td>ACCEPTED</td>
-      <td>0x0372f3696fa7dc99801f435fd6737e57818239f2-mem...</td>
+      <td>0xb9b93bf2db3678b010e71ef701d763aee144e93e</td>
+      <td>aca77a4e-ecb1-4eb3-a722-979977a52eb4</td>
+      <td>Gitcoin</td>
+      <td>gitcoin.png</td>
+      <td>0x06eed0e8d7df6d0bc8acf9f14a245dba9fd45075b118...</td>
+      <td>0xd7e430bdbff261f3b32738e44f91efe85512f9a3359e...</td>
       <td>1.0</td>
+      <td>2022-03-18T21:00:51.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>True</td>
+      <td>...</td>
+      <td>2022-03-13T13:45:11.000Z</td>
+      <td>6ccc01bb-6a94-41c8-895f-109638e43fb6</td>
+      <td>None</td>
+      <td>6</td>
+      <td>0x2b888954421b424c5d3d9ce9bb67c9bd47537d12</td>
+      <td># Gitcoin dCompass S13 funding request ratific...</td>
+      <td>None</td>
+      <td># Gitcoin dCompass S13 funding request ratific...</td>
+      <td>ACCEPTED</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1-pro...</td>
-      <td>2020-03-24T00:25:30.000Z</td>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1</td>
-      <td>Raid Guild</td>
-      <td>RaidGuild.jpg</td>
-      <td>3a5bc696-1c33-49a8-9cee-ba8089da6a6b</td>
-      <td>0x66b1de0f14a0ce971f7f248415063d44caf19398</td>
-      <td>Yalor</td>
-      <td>https://ipfs.io/ipfs/QmbK3qEYJCiyjUCjGpLLsk7bi...</td>
-      <td>New Member: Burrrata (@Burrrata)</td>
-      <td>...</td>
-      <td>8c21c472-1533-4e88-9119-6266e0fcb158</td>
-      <td>0xc7f459c7edcf9333d223bd1c346f46819403ca06</td>
-      <td>Sydney</td>
-      <td>https://ipfs.io/ipfs/QmZH5GGr5vbX2S1sRHZFsf2iZ...</td>
-      <td>Meta Gamma Delta ΜΓΔ</td>
-      <td>A buidl sorority that supports dope projects m...</td>
-      <td>4</td>
-      <td>ACCEPTED</td>
-      <td>0x0372f3696fa7dc99801f435fd6737e57818239f2-mem...</td>
+      <td>0xb9b93bf2db3678b010e71ef701d763aee144e93e</td>
+      <td>aca77a4e-ecb1-4eb3-a722-979977a52eb4</td>
+      <td>Gitcoin</td>
+      <td>gitcoin.png</td>
+      <td>0xe378ed7c5bf6033e59f602cca1140eada739e34f6dd7...</td>
+      <td>0x54a5344b67a260f4951ee957e7da2191557a34de3951...</td>
       <td>1.0</td>
+      <td>2022-03-11T22:46:37.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>True</td>
+      <td>...</td>
+      <td>2022-03-11T03:25:39.000Z</td>
+      <td>6ccc01bb-6a94-41c8-895f-109638e43fb6</td>
+      <td>None</td>
+      <td>6</td>
+      <td>0x54becc7560a7be76d72ed76a1f5fee6c5a2a7ab6</td>
+      <td># Gitcoin FDD S13 funding request ratification...</td>
+      <td>None</td>
+      <td># Gitcoin FDD S13 funding request ratification...</td>
+      <td>ACCEPTED</td>
+      <td>None</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1-pro...</td>
-      <td>2020-03-10T21:09:20.000Z</td>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1</td>
-      <td>Raid Guild</td>
-      <td>RaidGuild.jpg</td>
-      <td>3a5bc696-1c33-49a8-9cee-ba8089da6a6b</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>Ven Gist</td>
-      <td>https://ipfs.io/ipfs/QmX5zzpTqkr1Nc8WtSX5kiqaK...</td>
-      <td>New Member: Felipe (@duartedao)</td>
-      <td>...</td>
-      <td>8c21c472-1533-4e88-9119-6266e0fcb158</td>
-      <td>0x865c2f85c9fea1c6ac7f53de07554d68cb92ed88</td>
-      <td>Peter 'pet3rpan'</td>
-      <td>https://ipfs.io/ipfs/QmYxQz6ihvTX6JZBqANn7rzcw...</td>
-      <td>DAO Membership Proposal #58: Jon T</td>
-      <td>https://forum.metacartel.org/t/dao-membership-...</td>
-      <td>3</td>
-      <td>ACCEPTED</td>
-      <td>0x0372f3696fa7dc99801f435fd6737e57818239f2-mem...</td>
+      <td>0xb9b93bf2db3678b010e71ef701d763aee144e93e</td>
+      <td>aca77a4e-ecb1-4eb3-a722-979977a52eb4</td>
+      <td>Gitcoin</td>
+      <td>gitcoin.png</td>
+      <td>0xf79ae30fd38e13f2f33fba62c65df6f9058b16504a71...</td>
+      <td>0x5784ba66b16153b15cd2b94625909cb1b4ee7d1c6b5f...</td>
       <td>1.0</td>
+      <td>2022-03-07T20:52:19.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>True</td>
+      <td>...</td>
+      <td>2022-01-13T11:08:36.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>True</td>
+      <td>11</td>
+      <td>0x7e052ef7b4bb7e5a45f331128afadb1e589deaf1</td>
+      <td>\nWith this proposal we'd like to create the G...</td>
+      <td>{'Yes, I support the proposal': 5452172.262269...</td>
+      <td>DAO Operations (DAOOps) Q1 2022 budget request</td>
+      <td>N/A</td>
+      <td>[Yes, I support the proposal, No, I don't supp...</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1-pro...</td>
-      <td>2020-03-10T17:58:20.000Z</td>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1</td>
-      <td>Raid Guild</td>
-      <td>RaidGuild.jpg</td>
-      <td>3a5bc696-1c33-49a8-9cee-ba8089da6a6b</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>Ven Gist</td>
-      <td>https://ipfs.io/ipfs/QmX5zzpTqkr1Nc8WtSX5kiqaK...</td>
-      <td>Funding: Raid Guild Tshirt Reimbursement</td>
-      <td>...</td>
-      <td>ba288cda-5c0e-4cea-90ca-104824d7e42b</td>
-      <td>0xced608aa29bb92185d9b6340adcbfa263dae075b</td>
-      <td>Deke</td>
-      <td>https://ipfs.io/ipfs/QmZSdi7FdSkX8DpXRgEcyDFwC...</td>
-      <td>xDai DAO Migration</td>
-      <td>xDai or bust. Transfer all funds to xDai dao. ...</td>
-      <td>7</td>
-      <td>ACCEPTED</td>
-      <td>0xdec090a12f2e280b089daa225892d9efa8ed0ee8-mem...</td>
+      <td>0xb9b93bf2db3678b010e71ef701d763aee144e93e</td>
+      <td>aca77a4e-ecb1-4eb3-a722-979977a52eb4</td>
+      <td>Gitcoin</td>
+      <td>gitcoin.png</td>
+      <td>0x4d088c41e7110cd5de197d67468aee79f8ca6c7f917d...</td>
+      <td>0xa7f5df0710cba3a190df10a054ce3b4e7225bcfd65b9...</td>
       <td>1.0</td>
+      <td>2022-02-27T12:51:06.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>True</td>
+      <td>...</td>
+      <td>2021-12-12T01:49:53.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>False</td>
+      <td>11</td>
+      <td>0x3880fe0bc8754807a01dfe943280817986945429</td>
+      <td>Summary:\n\nIf this proposal passes, we plan t...</td>
+      <td>{'No: do not compensate them': 3830378.0506371...</td>
+      <td>Redistribute GTC to Individuals Who Could Not ...</td>
+      <td>N/A</td>
+      <td>[Yes: compensate eligible users, No: do not co...</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1-pro...</td>
-      <td>2020-03-10T17:42:27.000Z</td>
-      <td>0xbd6fa666fbb6fdeb4fc5eb36cdd5c87b069b24c1</td>
-      <td>Raid Guild</td>
-      <td>RaidGuild.jpg</td>
-      <td>3a5bc696-1c33-49a8-9cee-ba8089da6a6b</td>
-      <td>0xd26a3f686d43f2a62ba9eae2ff77e9f516d945b9</td>
-      <td>Ven Gist</td>
-      <td>https://ipfs.io/ipfs/QmX5zzpTqkr1Nc8WtSX5kiqaK...</td>
-      <td>New Member: Lili (@lililashka)</td>
-      <td>...</td>
-      <td>4c7bad27-7ae1-4a39-ad8c-6cc776ef2d1a</td>
-      <td>0xfb3d6b83e51a08ca89dcfe853e7ccbf5ee6ffbf4</td>
-      <td>0xfb3d...fbf4</td>
-      <td>None</td>
-      <td>Minion sends a token</td>
-      <td>August Retry</td>
-      <td>1</td>
-      <td>ACCEPTED</td>
-      <td>0xc8e0d7fd13eb3cbc19eb293d0e00b8386cc1b6f2-mem...</td>
+      <td>0xb9b93bf2db3678b010e71ef701d763aee144e93e</td>
+      <td>aca77a4e-ecb1-4eb3-a722-979977a52eb4</td>
+      <td>Gitcoin</td>
+      <td>gitcoin.png</td>
+      <td>0x615f52484e718ad10b9c239c622970bb8f75cd63785e...</td>
+      <td>0xa6fa6cae4e3c341f4b65a580779e3e66430e02b8979e...</td>
       <td>1.0</td>
+      <td>2022-02-19T09:39:19.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>True</td>
+      <td>...</td>
+      <td>2021-12-10T09:58:57.000Z</td>
+      <td>7dc34a38-66bd-48bc-b40e-16c04da71a75</td>
+      <td>True</td>
+      <td>11</td>
+      <td>0x0cf30daf2fb962ed1d5d19c97f5f6651f3b691c1</td>
+      <td>Summary\n\nThis proposal, if passed, would iss...</td>
+      <td>{'Yes, I support the proposal': 4232245.409717...</td>
+      <td>DeveloperDAO Partnership</td>
+      <td>N/A</td>
+      <td>[Yes, I support the proposal, No, I do not sup...</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 30 columns</p>
+<p>5 rows × 34 columns</p>
 </div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </section>
 </section>

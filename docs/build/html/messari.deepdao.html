@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="notebooks/NonFungible%20API%20Tutorial.html">NonFungible Python API Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/NFT%20Price%20Floor%20API%20Tutorial.html">NFT Price Floor Python API Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="notebooks/Event%20Monitor%20Tutorial.html">Event Monitor Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/fred.html">FRED API Tutorial</a></li>
 </ul>
 
         </div>
@@ -119,11 +120,11 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_dao_financials" title="messari.deepdao.deepdao.DeepDAO.get_dao_financials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dao_financials</span></code></a>(dao_slugs)</p></td>
-<td><p>Returns information about the financials of given DAO(s) Parameters ----------     dao_slugs: Union[str, List]         Input DAO names as a string or list (ex. 'Uniswap').</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_dao_activity" title="messari.deepdao.deepdao.DeepDAO.get_dao_activity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dao_activity</span></code></a>(dao_slugs)</p></td>
+<td><p>Returns basic activity for given DAO(s) Parameters ----------     dao_slugs: Union[str, List]         Input DAO names as a string or list (ex. 'Uniswap').</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_dao_indices" title="messari.deepdao.deepdao.DeepDAO.get_dao_indices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dao_indices</span></code></a>(dao_slugs)</p></td>
-<td><p>Returns financial indices for given DAO(s). Like the Gini Index or the Herfindahl–Hirschman index Parameters ----------     dao_slugs: Union[str, List]         Input DAO names as a string or list (ex. 'Uniswap').</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_dao_financials" title="messari.deepdao.deepdao.DeepDAO.get_dao_financials"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dao_financials</span></code></a>(dao_slugs)</p></td>
+<td><p>Returns information about the financials of given DAO(s) Parameters ----------     dao_slugs: Union[str, List]         Input DAO names as a string or list (ex. 'Uniswap').</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_dao_info" title="messari.deepdao.deepdao.DeepDAO.get_dao_info"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_dao_info</span></code></a>(dao_slugs)</p></td>
 <td><p>Returns basic information for given DAO(s) Parameters ----------     dao_slugs: Union[str, List]         Input DAO names as a string or list (ex. 'Uniswap').</p></td>
@@ -146,44 +147,63 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_member_list" title="messari.deepdao.deepdao.DeepDAO.get_member_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_member_list</span></code></a>()</p></td>
 <td><p>Returns list of DAO members tracked by Deep DAO Returns -------    list        list of memberss</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_member_proposals" title="messari.deepdao.deepdao.DeepDAO.get_member_proposals"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_member_proposals</span></code></a>(pubkeys)</p></td>
-<td><p>Returns proposal history for given member(s) Parameters ----------     pubkeys: Union[str, List]         Input public keys for DAO members as a string or list</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_member_votes" title="messari.deepdao.deepdao.DeepDAO.get_member_votes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_member_votes</span></code></a>(pubkeys)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_member_votes" title="messari.deepdao.deepdao.DeepDAO.get_member_votes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_member_votes</span></code></a>(pubkeys)</p></td>
 <td><p>Returns voting history for given member(s) Parameters ----------     pubkeys: Union[str, List]         Input public keys for DAO members as a string or list</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_organizations" title="messari.deepdao.deepdao.DeepDAO.get_organizations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_organizations</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_organizations" title="messari.deepdao.deepdao.DeepDAO.get_organizations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_organizations</span></code></a>()</p></td>
 <td><p>Returns basic info for all Deep DAO tracked organizations Returns -------    DataFrame        pandas DataFrame of Deep DAO organizations info</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_overview" title="messari.deepdao.deepdao.DeepDAO.get_overview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_overview</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_overview" title="messari.deepdao.deepdao.DeepDAO.get_overview"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_overview</span></code></a>()</p></td>
 <td><p>Returns an overview of the DAO ecosystem aggreated by Deep DAO Returns -------    DataFrame        pandas DataFrame of DAO ecosystem overview</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_rankings" title="messari.deepdao.deepdao.DeepDAO.get_rankings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_rankings</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_rankings" title="messari.deepdao.deepdao.DeepDAO.get_rankings"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_rankings</span></code></a>()</p></td>
 <td><p>Returns rankings for organizations tracked by Deep DAO Returns -------    DataFrame        pandas DataFrame of Deep DAO organizations rankings</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_response</span></code>(endpoint_url[, params, headers])</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_response</span></code>(endpoint_url[, params, headers])</p></td>
 <td><p>Gets response from endpoint and checks for HTTP errors when requesting data.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_summary" title="messari.deepdao.deepdao.DeepDAO.get_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_summary</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_summary" title="messari.deepdao.deepdao.DeepDAO.get_summary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_summary</span></code></a>()</p></td>
 <td><p>Returns basic summaries of information for all Deep DAO tracked organizations Returns -------    DataFrame        pandas DataFrame of Deep DAO organizations summaries</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_tokens" title="messari.deepdao.deepdao.DeepDAO.get_tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tokens</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_tokens" title="messari.deepdao.deepdao.DeepDAO.get_tokens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_tokens</span></code></a>()</p></td>
 <td><p>Returns information about the utilization of different tokens Returns -------    DataFrame        pandas DataFrame with token utilization</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_top_members" title="messari.deepdao.deepdao.DeepDAO.get_top_members"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_top_members</span></code></a>([count])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#messari.deepdao.deepdao.DeepDAO.get_top_members" title="messari.deepdao.deepdao.DeepDAO.get_top_members"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_top_members</span></code></a>([count])</p></td>
 <td><p>Returns a dataframe of basic information for the the top Members Sorted by amount of DAO's particpating in.</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_api_dict</span></code>(api_dict)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_api_dict</span></code>(api_dict)</p></td>
 <td><p>Sets a new dictionary to be used as an API key pair</p></td>
 </tr>
-<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_taxonomy_dict</span></code>(taxonomy_dict)</p></td>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_taxonomy_dict</span></code>(taxonomy_dict)</p></td>
 <td><p>Sets a new dictionary to be used for taxonomy translations</p></td>
 </tr>
-<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>(input_slugs)</p></td>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">translate</span></code>(input_slugs)</p></td>
 <td><p>Wrapper around messari.utils.validate_input, validate input &amp; check if it's supported by DeFi Llama</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="py method">
+<dt class="sig sig-object py" id="messari.deepdao.deepdao.DeepDAO.get_dao_activity">
+<span class="sig-name descname"><span class="pre">get_dao_activity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dao_slugs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#messari.deepdao.deepdao.DeepDAO.get_dao_activity" title="Permalink to this definition"></a></dt>
+<dd><p>Returns basic activity for given DAO(s)
+Parameters
+———-</p>
+<blockquote>
+<div><dl class="simple">
+<dt>dao_slugs: Union[str, List]</dt><dd><p>Input DAO names as a string or list (ex. ‘Uniswap’)</p>
+</dd>
+</dl>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt>DataFrame</dt><dd><p>pandas DataFrame with DAO activity</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="messari.deepdao.deepdao.DeepDAO.get_dao_financials">
 <span class="sig-name descname"><span class="pre">get_dao_financials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dao_slugs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#messari.deepdao.deepdao.DeepDAO.get_dao_financials" title="Permalink to this definition"></a></dt>
@@ -200,29 +220,6 @@ Parameters
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
 <dt>DataFrame</dt><dd><p>pandas DataFrame with DAO financials</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="messari.deepdao.deepdao.DeepDAO.get_dao_indices">
-<span class="sig-name descname"><span class="pre">get_dao_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dao_slugs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#messari.deepdao.deepdao.DeepDAO.get_dao_indices" title="Permalink to this definition"></a></dt>
-<dd><p>Returns financial indices for given DAO(s).
-Like the Gini Index or the Herfindahl–Hirschman index
-Parameters
-———-</p>
-<blockquote>
-<div><dl class="simple">
-<dt>dao_slugs: Union[str, List]</dt><dd><p>Input DAO names as a string or list (ex. ‘Uniswap’)</p>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>DataFrame</dt><dd><p>pandas DataFrame with DAO indices</p>
 </dd>
 </dl>
 </dd>
@@ -365,28 +362,6 @@ Returns
 </dd>
 </dl>
 </div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="messari.deepdao.deepdao.DeepDAO.get_member_proposals">
-<span class="sig-name descname"><span class="pre">get_member_proposals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pubkeys</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.core.frame.DataFrame</span></span></span><a class="headerlink" href="#messari.deepdao.deepdao.DeepDAO.get_member_proposals" title="Permalink to this definition"></a></dt>
-<dd><p>Returns proposal history for given member(s)
-Parameters
-———-</p>
-<blockquote>
-<div><dl class="simple">
-<dt>pubkeys: Union[str, List]</dt><dd><p>Input public keys for DAO members as a string or list</p>
-</dd>
-</dl>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt>DataFrame</dt><dd><p>pandas DataFrame with member governance proposals</p>
-</dd>
-</dl>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
