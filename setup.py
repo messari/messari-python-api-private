@@ -11,6 +11,7 @@ setup(
     version='0.0.1',
     packages=['messari',
               'messari.defillama',
+              'messari.fred',
               'messari.messari',
               'messari.tokenterminal',
               'messari.deepdao',

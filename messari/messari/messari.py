@@ -529,6 +529,8 @@ class Messari(DataLoader):
                 Dictionary or pandas DataFrame of asset data.
         """
         asset_slugs = validate_input(asset_slugs)
+        #metrics = validate_input(a
+
         payload = {'interval': interval}
         if start:
             if not end:
@@ -542,10 +544,12 @@ class Messari(DataLoader):
             response = self.get_response(url, params=payload, headers=self.api_dict)
             response_flat = convert_flatten(response['data'])
             response_data[asset] = response_flat
-        if to_dataframe:
-            timeseries_df = timeseries_to_dataframe(response_data)
-            if asset_metric != 'price':
-                col_name = timeseries_df.columns[0][1]
-                timeseries_df = timeseries_df.xs(col_name, axis=1, level=1)
-            return timeseries_df
-        return response_data
+
+        if not to_dataframe:
+            return response_data
+
+        timeseries_df = timeseries_to_dataframe(response_data)
+        if asset_metric != 'price' and not timeseries_df.empty:
+            col_name = timeseries_df.columns[0][1]
+            timeseries_df = timeseries_df.xs(col_name, axis=1, level=1)
+        return timeseries_df
