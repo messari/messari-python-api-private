@@ -89,10 +89,14 @@ class TokenTerminal(DataLoader):
         df_list = []
         for protocol in protocols:
             url = f'{BASE_URL}/{protocol}/metrics'
-            data = self.get_response(url, headers=self.api_dict)
-            df = pd.DataFrame(data)
-            df.set_index('datetime', inplace=True)
-            df.index = pd.to_datetime(df.index, format='%Y-%m-%dT%H:%M:%S').date  # noqa
+            try:
+                data = self.get_response(url, headers=self.api_dict)
+                df = pd.DataFrame(data)
+                df.set_index('datetime', inplace=True)
+                df.index = pd.to_datetime(df.index, format='%Y-%m-%dT%H:%M:%S').date  # noqa
+            except Exception as e:
+                print(f'failed to get data for {protocol}: {e}')
+                df = pd.DataFrame()
             df_list.append(df)
 
         final_df = pd.concat(df_list, keys=protocols, axis=1)

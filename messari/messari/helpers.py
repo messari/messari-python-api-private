@@ -52,8 +52,8 @@ def timeseries_to_dataframe(response: Dict) -> pd.DataFrame:
     """
     df_list, key_list = [], []
     for key, value in response.items():
-        key_list.append(key)
         if isinstance(value['values'], list):
+            key_list.append(key)
             df_columns=[f'{name}' for name in value['parameters_columns']]
             values_df = pd.DataFrame.from_records(value['values'], columns=df_columns)
             values_df.set_index('timestamp', inplace=True)
@@ -61,6 +61,7 @@ def timeseries_to_dataframe(response: Dict) -> pd.DataFrame:
             df_list.append(values_df)
         else:
             logging.warning('Missing timeseries data for %s', key)
+            #return pd.DataFrame()
             continue
     # Create multindex DataFrame using list of dataframes & keys
     metric_data_df = pd.concat(df_list, keys=key_list, axis=1)
