@@ -60,6 +60,7 @@
 <li class="toctree-l1"><a class="reference internal" href="NonFungible%20API%20Tutorial.html">NonFungible Python API Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="NFT%20Price%20Floor%20API%20Tutorial.html">NFT Price Floor Python API Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Event%20Monitor%20Tutorial.html">Event Monitor Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fred.html">FRED API Tutorial</a></li>
 </ul>
 
         </div>
@@ -362,11 +363,11 @@ div.rendered_html tbody tr:hover {
 <p>This tutorial aims to be a quick guide to get you started using the Token Terminal API integrated into messari’s python library.</p>
 <p>Token Terminal requires an API key for authentication so the first step before getting started is to create an instance of the TokenTerminal class using your API key.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">messari.tokenterminal</span> <span class="kn">import</span> <span class="n">TokenTerminal</span>
-<span class="n">API_KEY</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+<span class="n">API_KEY</span> <span class="o">=</span> <span class="s1">&#39;610b30be-e8b5-4b64-a27d-d59c94132ee4&#39;</span>
 <span class="n">tt</span> <span class="o">=</span> <span class="n">TokenTerminal</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">API_KEY</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -386,7 +387,7 @@ div.rendered_html tbody tr:hover {
 <h2>Get project ids<a class="headerlink" href="#Get-project-ids" title="Permalink to this headline"></a></h2>
 <p>This function returns all project ids available in Token Terminal. The function is intended to be used as way to find what protocols the API can provide data for.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">project_ids</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">get_project_ids</span><span class="p">()</span>
@@ -399,7 +400,7 @@ div.rendered_html tbody tr:hover {
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-[&#39;0x&#39;, &#39;1inch&#39;, &#39;88mph&#39;, &#39;aave&#39;, &#39;abracadabra-money&#39;, &#39;alchemix-finance&#39;, &#39;alpha-finance&#39;, &#39;autofarm&#39;, &#39;avalanche&#39;, &#39;axie-infinity&#39;, &#39;babyswap&#39;, &#39;balancer&#39;, &#39;bancor&#39;, &#39;barnbridge&#39;, &#39;basket-dao&#39;, &#39;benqi&#39;, &#39;binance-smart-chain&#39;, &#39;bitcoin&#39;, &#39;cardano&#39;, &#39;centrifuge&#39;, &#39;clipper&#39;, &#39;compound&#39;, &#39;cosmos&#39;, &#39;cream&#39;, &#39;cryptex&#39;, &#39;curve&#39;, &#39;decred&#39;, &#39;dhedge&#39;, &#39;dodo&#39;, &#39;dogecoin&#39;, &#39;dydx&#39;, &#39;ellipsis-finance&#39;, &#39;enzyme-finance&#39;, &#39;erasure-protocol&#39;, &#39;ethereum&#39;, &#39;ethereum-name-service&#39;, &#39;fantom&#39;, &#39;fei-protocol&#39;, &#39;filecoin&#39;, &#39;futureswap&#39;, &#39;harvest-finance&#39;, &#39;hegic&#39;, &#39;helium&#39;, &#39;hurricaneswap&#39;, &#39;idle-finance&#39;, &#39;index-cooperative&#39;, &#39;instadapp&#39;, &#39;integral-protocol&#39;, &#39;karura&#39;, &#39;keeperdao&#39;, &#39;keep-network&#39;, &#39;kusama&#39;, &#39;kyber&#39;, &#39;lido-finance&#39;, &#39;liquity&#39;, &#39;litecoin&#39;, &#39;livepeer&#39;, &#39;loopring&#39;, &#39;makerdao&#39;, &#39;maple-finance&#39;, &#39;mcdex&#39;, &#39;metamask&#39;, &#39;mirror-protocol&#39;, &#39;mstable&#39;, &#39;near-protocol&#39;, &#39;nexus-mutual&#39;, &#39;notional-finance&#39;, &#39;opensea&#39;, &#39;optimism&#39;, &#39;pancakeswap&#39;, &#39;pangolin&#39;, &#39;perpetual-protocol&#39;, &#39;piedao&#39;, &#39;polkadot&#39;, &#39;polygon&#39;, &#39;polymarket&#39;, &#39;pooltogether&#39;, &#39;powerpool&#39;, &#39;quickswap&#39;, &#39;rarible&#39;, &#39;rari-capital&#39;, &#39;reflexer&#39;, &#39;ren&#39;, &#39;ribbon-finance&#39;, &#39;saddle-finance&#39;, &#39;set-protocol&#39;, &#39;siren-markets&#39;, &#39;solana&#39;, &#39;spookyswap&#39;, &#39;stake-dao&#39;, &#39;stellar&#39;, &#39;sushiswap&#39;, &#39;swerve-finance&#39;, &#39;synthetix&#39;, &#39;terra&#39;, &#39;tezos&#39;, &#39;the-graph&#39;, &#39;thorchain&#39;, &#39;tokenlon&#39;, &#39;trader-joe&#39;, &#39;uma&#39;, &#39;uniswap&#39;, &#39;unit-protocol&#39;, &#39;venus&#39;, &#39;vesper-finance&#39;, &#39;visor-finance&#39;, &#39;volmex&#39;, &#39;wakaswap&#39;, &#39;xdai&#39;, &#39;yearn-finance&#39;, &#39;yetiswap&#39;, &#39;yield-yak&#39;, &#39;zcash&#39;]
+[&#39;0x&#39;, &#39;1inch&#39;, &#39;88mph&#39;, &#39;aave&#39;, &#39;abracadabra-money&#39;, &#39;alchemix-finance&#39;, &#39;alpha-finance&#39;, &#39;arweave&#39;, &#39;autofarm&#39;, &#39;avalanche&#39;, &#39;axie-infinity&#39;, &#39;balancer&#39;, &#39;bancor&#39;, &#39;barnbridge&#39;, &#39;basket-dao&#39;, &#39;benqi&#39;, &#39;binance-smart-chain&#39;, &#39;bitcoin&#39;, &#39;cap&#39;, &#39;cardano&#39;, &#39;centrifuge&#39;, &#39;clipper&#39;, &#39;compound&#39;, &#39;convex-finance&#39;, &#39;cosmos&#39;, &#39;cryptex&#39;, &#39;curve&#39;, &#39;decred&#39;, &#39;dforce&#39;, &#39;dhedge&#39;, &#39;dodo&#39;, &#39;dogecoin&#39;, &#39;dydx&#39;, &#39;ellipsis-finance&#39;, &#39;elrond&#39;, &#39;enzyme-finance&#39;, &#39;erasure-protocol&#39;, &#39;ethereum&#39;, &#39;ethereum-name-service&#39;, &#39;euler&#39;, &#39;fantom&#39;, &#39;fei-protocol&#39;, &#39;filecoin&#39;, &#39;futureswap&#39;, &#39;gmx&#39;, &#39;harvest-finance&#39;, &#39;helium&#39;, &#39;hurricaneswap&#39;, &#39;idle-finance&#39;, &#39;index-cooperative&#39;, &#39;instadapp&#39;, &#39;integral-protocol&#39;, &#39;karura&#39;, &#39;keeperdao&#39;, &#39;keep-network&#39;, &#39;kusama&#39;, &#39;kyber&#39;, &#39;lido-finance&#39;, &#39;liquity&#39;, &#39;litecoin&#39;, &#39;livepeer&#39;, &#39;looksrare&#39;, &#39;loopring&#39;, &#39;maiar&#39;, &#39;makerdao&#39;, &#39;maple-finance&#39;, &#39;mcdex&#39;, &#39;metamask&#39;, &#39;mstable&#39;, &#39;near-protocol&#39;, &#39;nexus-mutual&#39;, &#39;notional-finance&#39;, &#39;opensea&#39;, &#39;optimism&#39;, &#39;osmosis&#39;, &#39;pancakeswap&#39;, &#39;pangolin&#39;, &#39;perpetual-protocol&#39;, &#39;piedao&#39;, &#39;pocket-network&#39;, &#39;polkadot&#39;, &#39;polygon&#39;, &#39;polymarket&#39;, &#39;pooltogether&#39;, &#39;powerpool&#39;, &#39;quickswap&#39;, &#39;rarible&#39;, &#39;rari-capital&#39;, &#39;reflexer&#39;, &#39;ren&#39;, &#39;ribbon-finance&#39;, &#39;saddle-finance&#39;, &#39;set-protocol&#39;, &#39;solana&#39;, &#39;spookyswap&#39;, &#39;stake-dao&#39;, &#39;stellar&#39;, &#39;sushiswap&#39;, &#39;synthetix&#39;, &#39;terra&#39;, &#39;tezos&#39;, &#39;the-graph&#39;, &#39;thorchain&#39;, &#39;tokenlon&#39;, &#39;trader-joe&#39;, &#39;uma&#39;, &#39;uniswap&#39;, &#39;unit-protocol&#39;, &#39;venus&#39;, &#39;vesper-finance&#39;, &#39;volmex&#39;, &#39;wakaswap&#39;, &#39;yearn-finance&#39;, &#39;yield-guild-games&#39;, &#39;yield-yak&#39;, &#39;zcash&#39;]
 </pre></div></div>
 </div>
 </section>
@@ -736,10 +737,10 @@ div.rendered_html tbody tr:hover {
 <h2>Get protocol data<a class="headerlink" href="#Get-protocol-data" title="Permalink to this headline"></a></h2>
 <p>The function returns a time series of the latest data for a given project, ranging from metadata such as Twitter followers to more fundamental metrics such as Revenue, GMV, TVL and P/S ratios.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">protocols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;uniswap&#39;</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">protocols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cosmos&#39;</span><span class="p">]</span>
 <span class="n">start_date</span> <span class="o">=</span> <span class="s2">&quot;2021-10-01&quot;</span>
 <span class="n">end_date</span> <span class="o">=</span> <span class="s2">&quot;2021-10-10&quot;</span>
 <span class="n">protocol_data</span> <span class="o">=</span> <span class="n">tt</span><span class="o">.</span><span class="n">get_protocol_data</span><span class="p">(</span><span class="n">protocols</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="o">=</span><span class="n">end_date</span><span class="p">)</span>
@@ -748,7 +749,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[21]:
 </pre></div>
 </div>
 <div class="output_area rendered_html docutils container">
@@ -770,7 +771,7 @@ div.rendered_html tbody tr:hover {
   <thead>
     <tr>
       <th></th>
-      <th colspan="21" halign="left">uniswap</th>
+      <th colspan="21" halign="left">cosmos</th>
     </tr>
     <tr>
       <th></th>
@@ -800,242 +801,242 @@ div.rendered_html tbody tr:hover {
   <tbody>
     <tr>
       <th>2021-10-01</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>23.444192</td>
-      <td>2.344419e+10</td>
-      <td>1.216002e+10</td>
-      <td>2.344419e+10</td>
+      <td>36.218465</td>
+      <td>1.013940e+10</td>
+      <td>1.013940e+10</td>
+      <td>None</td>
       <td>...</td>
+      <td>309565.790081</td>
+      <td>309565.790081</td>
+      <td>6191.315802</td>
+      <td>6191.315802</td>
       <td>None</td>
       <td>None</td>
-      <td>15.340730</td>
-      <td>7.956922</td>
-      <td>4.562549e+09</td>
-      <td>1.672296e+09</td>
-      <td>3.229105e+06</td>
-      <td>3.229105e+06</td>
-      <td>0.0</td>
+      <td>5136.202384</td>
+      <td>5033.478336</td>
+      <td>102.724048</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-02</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>25.649286</td>
-      <td>2.564929e+10</td>
-      <td>1.327781e+10</td>
-      <td>2.564929e+10</td>
+      <td>37.757568</td>
+      <td>1.055083e+10</td>
+      <td>1.055083e+10</td>
+      <td>None</td>
       <td>...</td>
+      <td>317106.998327</td>
+      <td>317106.998327</td>
+      <td>6342.139967</td>
+      <td>6342.139967</td>
       <td>None</td>
       <td>None</td>
-      <td>16.993874</td>
-      <td>8.797179</td>
-      <td>4.643719e+09</td>
-      <td>1.257296e+09</td>
-      <td>2.786595e+06</td>
-      <td>2.786595e+06</td>
-      <td>0.0</td>
+      <td>5322.906002</td>
+      <td>5216.447882</td>
+      <td>106.458120</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-03</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>25.649286</td>
-      <td>2.564929e+10</td>
-      <td>1.327781e+10</td>
-      <td>2.564929e+10</td>
+      <td>38.709328</td>
+      <td>1.083941e+10</td>
+      <td>1.083941e+10</td>
+      <td>None</td>
       <td>...</td>
+      <td>318847.634319</td>
+      <td>318847.634319</td>
+      <td>6376.952686</td>
+      <td>6376.952686</td>
       <td>None</td>
       <td>None</td>
-      <td>17.188804</td>
-      <td>8.898087</td>
-      <td>4.648515e+09</td>
-      <td>1.221896e+09</td>
-      <td>2.624770e+06</td>
-      <td>2.624770e+06</td>
-      <td>0.0</td>
+      <td>5773.825142</td>
+      <td>5658.348639</td>
+      <td>115.476503</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-04</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>26.044680</td>
-      <td>2.604468e+10</td>
-      <td>1.354416e+10</td>
-      <td>2.604468e+10</td>
+      <td>38.926235</td>
+      <td>1.090128e+10</td>
+      <td>1.090128e+10</td>
+      <td>None</td>
       <td>...</td>
+      <td>311567.613759</td>
+      <td>311567.613759</td>
+      <td>6231.352275</td>
+      <td>6231.352275</td>
       <td>None</td>
       <td>None</td>
-      <td>17.852846</td>
-      <td>9.284112</td>
-      <td>4.613903e+09</td>
-      <td>1.570555e+09</td>
-      <td>3.464031e+06</td>
-      <td>3.464031e+06</td>
-      <td>0.0</td>
+      <td>6701.222410</td>
+      <td>6567.197962</td>
+      <td>134.024448</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-05</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>25.301983</td>
-      <td>2.530198e+10</td>
-      <td>1.318691e+10</td>
-      <td>2.530198e+10</td>
+      <td>36.746520</td>
+      <td>1.034555e+10</td>
+      <td>1.034555e+10</td>
+      <td>None</td>
       <td>...</td>
+      <td>288955.723693</td>
+      <td>288955.723693</td>
+      <td>5779.114474</td>
+      <td>5779.114474</td>
       <td>None</td>
       <td>None</td>
-      <td>17.498264</td>
-      <td>9.119764</td>
-      <td>4.754376e+09</td>
-      <td>1.413950e+09</td>
-      <td>3.553829e+06</td>
-      <td>3.553829e+06</td>
-      <td>0.0</td>
+      <td>5822.819581</td>
+      <td>5706.363189</td>
+      <td>116.456392</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-06</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>25.681384</td>
-      <td>2.568138e+10</td>
-      <td>1.337438e+10</td>
-      <td>2.568138e+10</td>
+      <td>36.947779</td>
+      <td>1.039207e+10</td>
+      <td>1.039207e+10</td>
+      <td>None</td>
       <td>...</td>
+      <td>281187.018428</td>
+      <td>281187.018428</td>
+      <td>5623.740369</td>
+      <td>5623.740369</td>
       <td>None</td>
       <td>None</td>
-      <td>17.775381</td>
-      <td>9.257080</td>
-      <td>4.774576e+09</td>
-      <td>1.943523e+09</td>
-      <td>4.138442e+06</td>
-      <td>4.138442e+06</td>
-      <td>0.0</td>
+      <td>7338.152242</td>
+      <td>7191.389197</td>
+      <td>146.763045</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-07</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>25.320647</td>
-      <td>2.532065e+10</td>
-      <td>1.316125e+10</td>
-      <td>2.532065e+10</td>
+      <td>35.225780</td>
+      <td>9.877777e+09</td>
+      <td>9.877777e+09</td>
+      <td>None</td>
       <td>...</td>
+      <td>261980.685640</td>
+      <td>261980.685640</td>
+      <td>5239.613713</td>
+      <td>5239.613713</td>
       <td>None</td>
       <td>None</td>
-      <td>17.482794</td>
-      <td>9.087268</td>
-      <td>4.774576e+09</td>
-      <td>1.929270e+09</td>
-      <td>5.215952e+06</td>
-      <td>5.215952e+06</td>
-      <td>0.0</td>
+      <td>5791.456418</td>
+      <td>5675.627290</td>
+      <td>115.829128</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-08</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>25.589763</td>
-      <td>2.558976e+10</td>
-      <td>1.329077e+10</td>
-      <td>2.558976e+10</td>
+      <td>36.716390</td>
+      <td>1.027422e+10</td>
+      <td>1.027422e+10</td>
+      <td>None</td>
       <td>...</td>
+      <td>266058.352549</td>
+      <td>266058.352549</td>
+      <td>5321.167051</td>
+      <td>5321.167051</td>
       <td>None</td>
       <td>None</td>
-      <td>18.279795</td>
-      <td>9.494129</td>
-      <td>4.760272e+09</td>
-      <td>1.447673e+09</td>
-      <td>3.800945e+06</td>
-      <td>3.800945e+06</td>
-      <td>0.0</td>
+      <td>6923.689298</td>
+      <td>6785.215512</td>
+      <td>138.473786</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-09</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>24.716686</td>
-      <td>2.471669e+10</td>
-      <td>1.287703e+10</td>
-      <td>2.471669e+10</td>
+      <td>35.048359</td>
+      <td>9.850684e+09</td>
+      <td>9.850684e+09</td>
+      <td>None</td>
       <td>...</td>
+      <td>248898.192651</td>
+      <td>248898.192651</td>
+      <td>4977.963853</td>
+      <td>4977.963853</td>
       <td>None</td>
       <td>None</td>
-      <td>18.181529</td>
-      <td>9.472309</td>
-      <td>4.874226e+09</td>
-      <td>1.035189e+09</td>
-      <td>2.963146e+06</td>
-      <td>2.963146e+06</td>
-      <td>0.0</td>
+      <td>6094.005087</td>
+      <td>5972.124985</td>
+      <td>121.880102</td>
       <td>None</td>
     </tr>
     <tr>
       <th>2021-10-10</th>
-      <td>Uniswap</td>
+      <td>Cosmos</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>total</td>
       <td>None</td>
-      <td>25.188947</td>
-      <td>2.518895e+10</td>
-      <td>1.311264e+10</td>
-      <td>2.518895e+10</td>
+      <td>35.216648</td>
+      <td>9.888990e+09</td>
+      <td>9.888990e+09</td>
+      <td>None</td>
       <td>...</td>
+      <td>234719.820698</td>
+      <td>234719.820698</td>
+      <td>4694.396414</td>
+      <td>4694.396414</td>
       <td>None</td>
       <td>None</td>
-      <td>18.712864</td>
-      <td>9.741378</td>
-      <td>4.788339e+09</td>
-      <td>1.480371e+09</td>
-      <td>3.324778e+06</td>
-      <td>3.324778e+06</td>
-      <td>0.0</td>
+      <td>13876.829626</td>
+      <td>13599.293033</td>
+      <td>277.536593</td>
       <td>None</td>
     </tr>
   </tbody>
@@ -1753,6 +1754,816 @@ div.rendered_html tbody tr:hover {
   </tbody>
 </table>
 </div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[85]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;tt.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">re</span> <span class="o">=</span> <span class="n">tmp_dict</span><span class="p">[</span><span class="s1">&#39;price_usd_change_1d&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">re</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;getMetric&#39;</span><span class="p">][</span><span class="s1">&#39;timeseriesData&#39;</span><span class="p">])</span>
+
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+Input <span class="ansi-green-fg">In [68]</span>, in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> df <span style="color: rgb(98,98,98)">=</span> pd<span style="color: rgb(98,98,98)">.</span>DataFrame(re[<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">data</span><span style="color: rgb(175,0,0)">&#39;</span>][<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">getMetric</span><span style="color: rgb(175,0,0)">&#39;</span>][<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">timeseriesData</span><span style="color: rgb(175,0,0)">&#39;</span>])
+<span class="ansi-green-intense-fg ansi-bold">      3</span> df<span style="color: rgb(98,98,98)">.</span>set_index(<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">datetime</span><span style="color: rgb(175,0,0)">&#39;</span>)
+<span class="ansi-green-fg">----&gt; 4</span> df<span style="color: rgb(98,98,98)">.</span>rename(columns<span style="color: rgb(98,98,98)">=</span>{<span style="color: rgb(175,0,0)">&#34;</span><span style="color: rgb(175,0,0)">value</span><span style="color: rgb(175,0,0)">&#34;</span>:<span style="color: rgb(175,0,0)">f</span><span style="color: rgb(175,0,0)">&#34;</span><span class="ansi-bold" style="color: rgb(175,95,135)">{</span>metric_str<span class="ansi-bold" style="color: rgb(175,95,135)">}</span><span style="color: rgb(175,0,0)">.activity.santiment</span><span style="color: rgb(175,0,0)">&#34;</span>}, inplace<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-intense-fg ansi-bold">      5</span> activity<span style="color: rgb(98,98,98)">.</span>set_index(<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">datetime</span><span style="color: rgb(175,0,0)">&#39;</span>, inplace<span style="color: rgb(98,98,98)">=</span><span class="ansi-bold" style="color: rgb(0,135,0)">True</span>)
+<span class="ansi-green-intense-fg ansi-bold">      6</span> new_index <span style="color: rgb(98,98,98)">=</span> pd<span style="color: rgb(98,98,98)">.</span>to_datetime(df<span style="color: rgb(98,98,98)">.</span>index, <span style="color: rgb(0,135,0)">format</span><span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">%</span><span style="color: rgb(175,0,0)">Y-</span><span style="color: rgb(175,0,0)">%</span><span style="color: rgb(175,0,0)">m-</span><span class="ansi-bold" style="color: rgb(175,95,135)">%d</span><span style="color: rgb(175,0,0)">&#39;</span>, errors<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">coerce</span><span style="color: rgb(175,0,0)">&#39;</span>)
+
+<span class="ansi-red-fg">NameError</span>: name &#39;metric_str&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metrics</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[&#39;30d_moving_avg_dev_activity_change_1d&#39;,
+ &#39;daily_trading_volume_usd&#39;,
+ &#39;active_addresses_1h&#39;,
+ &#39;daily_avg_marketcap_usd&#39;,
+ &#39;marketcap_usd&#39;,
+ &#39;price_usd_change_30d&#39;,
+ &#39;daily_low_price_usd&#39;,
+ &#39;active_addresses_24h_change_30d&#39;,
+ &#39;total_supply&#39;,
+ &#39;price_usd_change_1d&#39;,
+ &#39;price_eth&#39;,
+ &#39;active_addresses_24h_change_1d&#39;,
+ &#39;price_btc&#39;,
+ &#39;dev_activity_change_30d&#39;,
+ &#39;price_usd_5m&#39;,
+ &#39;price_eth_change_1d&#39;,
+ &#39;circulation&#39;,
+ &#39;dev_activity_change_7d&#39;,
+ &#39;github_activity_contributors_count&#39;,
+ &#39;price_usd_change_7d&#39;,
+ &#39;eth2_unlabeled_staker_inflow_sources&#39;,
+ &#39;price_usd&#39;,
+ &#39;volume_usd_change_1d&#39;,
+ &#39;active_addresses_24h&#39;,
+ &#39;marketcap_usd_change_1d&#39;,
+ &#39;price_eth_change_30d&#39;,
+ &#39;daily_closing_price_usd&#39;,
+ &#39;eth2_staked_amount_per_label&#39;,
+ &#39;daily_avg_price_usd&#39;,
+ &#39;daily_active_addresses&#39;,
+ &#39;daily_closing_marketcap_usd&#39;,
+ &#39;dev_activity_1d&#39;,
+ &#39;price_btc_change_30d&#39;,
+ &#39;daily_opening_price_usd&#39;,
+ &#39;historical_balance_changes&#39;,
+ &#39;price_eth_change_7d&#39;,
+ &#39;marketcap_usd_change_30d&#39;,
+ &#39;eth2_staked_address_count_per_label&#39;,
+ &#39;mcd_erc20_supply&#39;,
+ &#39;dev_activity_contributors_count&#39;,
+ &#39;dev_activity&#39;,
+ &#39;eth2_top_stakers&#39;,
+ &#39;price_btc_change_1d&#39;,
+ &#39;price_usd_change_1h&#39;,
+ &#39;volume_usd_change_7d&#39;,
+ &#39;volume_usd_change_30d&#39;,
+ &#39;dev_activity_change_1d&#39;,
+ &#39;historical_balance&#39;,
+ &#39;marketcap_usd_change_7d&#39;,
+ &#39;rank&#39;,
+ &#39;twitter_followers&#39;,
+ &#39;github_activity&#39;,
+ &#39;daily_high_price_usd&#39;,
+ &#39;volume_usd&#39;,
+ &#39;price_btc_change_7d&#39;,
+ &#39;active_addresses_24h_change_7d&#39;,
+ &#39;realized_value_usd_1d&#39;,
+ &#39;busd_bnb_funding_rates&#39;,
+ &#39;mvrv_usd_30d_change_1d&#39;,
+ &#39;circulation_2y&#39;,
+ &#39;circulation_1d&#39;,
+ &#39;dormant_circulation_90d&#39;,
+ &#39;percent_of_whale_stablecoin_total_supply&#39;,
+ &#39;busd_binance_funding_rate&#39;,
+ &#39;age_destroyed_change_7d&#39;,
+ &#39;exchange_balance_change_30d&#39;,
+ &#39;transaction_volume&#39;,
+ &#39;network_profit_loss_change_30d&#39;,
+ &#39;velocity&#39;,
+ &#39;mvrv_usd_intraday_60d&#39;,
+ &#39;bitmex_perpetual_price&#39;,
+ &#39;unique_social_volume_total_1h&#39;,
+ &#39;circulation_30d&#39;,
+ &#39;labelled_historical_balance&#39;,
+ &#39;exchange_inflow_change_30d&#39;,
+ &#39;network_growth_change_30d&#39;,
+ &#39;total_supply_in_profit&#39;,
+ &#39;mvrv_usd_30d&#39;,
+ &#39;sentiment_positive_twitter&#39;,
+ &#39;mean_realized_price_usd_30d&#39;,
+ &#39;price_daa_divergence&#39;,
+ &#39;mean_dollar_invested_age&#39;,
+ &#39;social_dominance_twitter&#39;,
+ &#39;sentiment_positive_telegram&#39;,
+ &#39;network_profit_loss_change_1d&#39;,
+ &#39;sentiment_balance_reddit&#39;,
+ &#39;mvrv_usd_2y&#39;,
+ &#39;fees_usd&#39;,
+ &#39;mvrv_usd_30d_change_30d&#39;,
+ &#39;mvrv_usd_intraday_7d&#39;,
+ &#39;social_volume_total_change_1d&#39;,
+ &#39;uniswap_top_claimers&#39;,
+ &#39;mean_realized_price_usd_365d&#39;,
+ &#39;sentiment_balance_twitter&#39;,
+ &#39;circulation_180d_change_1d&#39;,
+ &#39;mean_realized_price_usd_90d&#39;,
+ &#39;network_circulation_usd_1d&#39;,
+ &#39;exchange_balance&#39;,
+ &#39;active_withdrawals&#39;,
+ &#39;transaction_volume_usd_change_1d&#39;,
+ &#39;dormant_circulation_365d&#39;,
+ &#39;supply_on_exchanges_v2&#39;,
+ &#39;mvrv_usd&#39;,
+ &#39;percent_of_total_supply_on_exchanges&#39;,
+ &#39;sentiment_positive_total&#39;,
+ &#39;dormant_circulation_365d_change_1d&#39;,
+ &#39;exchange_outflow_change_1d&#39;,
+ &#39;bitmex_perpetual_funding_rate&#39;,
+ &#39;percent_of_total_supply_on_exchanges_change_1d&#39;,
+ &#39;realized_value_usd&#39;,
+ &#39;mvrv_usd_5y&#39;,
+ &#39;exchange_outflow_usd&#39;,
+ &#39;mvrv_usd_intraday_5y&#39;,
+ &#39;mvrv_usd_1d&#39;,
+ &#39;realized_value_usd_30d&#39;,
+ &#39;sentiment_volume_consumed_telegram&#39;,
+ &#39;circulation_7d&#39;,
+ &#39;bitmex_perpetual_funding_rate_change_1d&#39;,
+ &#39;social_volume_telegram&#39;,
+ &#39;mean_dollar_invested_age_change_30d&#39;,
+ &#39;realized_value_usd_5y&#39;,
+ &#39;circulation_change_30d&#39;,
+ &#39;social_volume_reddit&#39;,
+ &#39;mvrv_usd_365d_change_1d&#39;,
+ &#39;payments_count&#39;,
+ &#39;usdt_binance_open_interest&#39;,
+ &#39;social_active_users&#39;,
+ &#39;median_fees_usd&#39;,
+ &#39;mean_realized_price_usd_180d&#39;,
+ &#39;bitfinex_perpetual_funding_rate&#39;,
+ &#39;circulation_180d_change_7d&#39;,
+ &#39;sentiment_balance_bitcointalk&#39;,
+ &#39;mvrv_usd_intraday_10y&#39;,
+ &#39;transaction_volume_change_30d&#39;,
+ &#39;nvt&#39;,
+ &#39;bitmex_perpetual_basis&#39;,
+ &#39;active_deposits_5m&#39;,
+ &#39;average_transfer_5m&#39;,
+ &#39;social_dominance_twitter_24h_moving_average&#39;,
+ &#39;exchange_inflow_usd_change_30d&#39;,
+ &#39;age_destroyed_change_30d&#39;,
+ &#39;mvrv_long_short_diff_usd&#39;,
+ &#39;miners_total_supply&#39;,
+ &#39;bitmex_composite_price_index&#39;,
+ &#39;sentiment_volume_consumed_total_change_7d&#39;,
+ &#39;mvrv_usd_3y&#39;,
+ &#39;exchange_outflow_change_7d&#39;,
+ &#39;whale_transaction_count_1m_usd_to_inf&#39;,
+ &#39;realized_value_usd_180d&#39;,
+ &#39;mvrv_usd_180d_change_1d&#39;,
+ &#39;usdt_bnb_open_value&#39;,
+ &#39;mvrv_usd_intraday_2y&#39;,
+ &#39;mean_dollar_invested_age_change_1d&#39;,
+ &#39;network_profit_loss_change_7d&#39;,
+ &#39;social_dominance_total_change_7d&#39;,
+ &#39;social_dominance_telegram_1h_moving_average&#39;,
+ &#39;dormant_circulation_usd_180d_change_30d&#39;,
+ &#39;mean_dollar_invested_age_change_7d&#39;,
+ &#39;social_volume_total_change_30d&#39;,
+ &#39;social_dominance_reddit&#39;,
+ &#39;dormant_circulation_10y&#39;,
+ &#39;circulation_10y&#39;,
+ &#39;huobi_perpetual_funding_rate&#39;,
+ &#39;circulation_180d_change_30d&#39;,
+ &#39;mvrv_usd_60d&#39;,
+ &#39;mvrv_usd_10y&#39;,
+ &#39;transaction_volume_usd_change_30d&#39;,
+ &#39;labelled_historical_balance_changes&#39;,
+ &#39;average_fees_usd_5m&#39;,
+ &#39;mean_age&#39;,
+ &#39;mvrv_usd_intraday_180d&#39;,
+ &#39;sentiment_balance_telegram&#39;,
+ &#39;mvrv_usd_7d&#39;,
+ &#39;exchange_inflow_v2&#39;,
+ &#39;mean_realized_price_usd_5y&#39;,
+ &#39;sentiment_volume_consumed_bitcointalk&#39;,
+ &#39;mvrv_usd_intraday_1d&#39;,
+ &#39;circulation_365d&#39;,
+ &#39;mvrv_usd_90d&#39;,
+ &#39;sentiment_volume_consumed_total_change_1d&#39;,
+ &#39;social_dominance_total_24h_moving_average&#39;,
+ &#39;network_profit_loss&#39;,
+ &#39;social_dominance_total_1h_moving_average_change_7d&#39;,
+ &#39;mvrv_usd_180d&#39;,
+ &#39;social_volume_ai_total&#39;,
+ &#39;sentiment_balance_total_change_1d&#39;,
+ &#39;realized_value_usd_7d&#39;,
+ &#39;fees_intraday&#39;,
+ &#39;dormant_circulation_365d_change_30d&#39;,
+ &#39;exchange_outflow_change_30d&#39;,
+ &#39;sentiment_negative_bitcointalk&#39;,
+ &#39;percent_of_total_supply_in_profit&#39;,
+ &#39;social_dominance_bitcointalk&#39;,
+ &#39;percent_of_total_supply_on_exchanges_change_7d&#39;,
+ &#39;mvrv_usd_180d_change_7d&#39;,
+ &#39;social_dominance_total_24h_moving_average_change_1d&#39;,
+ &#39;exchange_inflow_usd_change_1d&#39;,
+ &#39;dormant_circulation_180d&#39;,
+ &#39;percent_of_total_supply_on_exchanges_change_30d&#39;,
+ &#39;sentiment_balance_total_change_7d&#39;,
+ &#39;transaction_volume_change_1d&#39;,
+ &#39;active_withdrawals_5m&#39;,
+ &#39;sentiment_negative_telegram&#39;,
+ &#39;exchange_outflow_usd_change_7d&#39;,
+ &#39;transaction_volume_usd_change_7d&#39;,
+ &#39;mean_realized_price_usd_10y&#39;,
+ &#39;mvrv_usd_change_30d&#39;,
+ &#39;exchange_inflow_change_1d&#39;,
+ &#39;social_dominance_total_change_30d&#39;,
+ &#39;amount_in_non_exchange_top_holders&#39;,
+ &#39;sentiment_positive_reddit&#39;,
+ &#39;dormant_circulation_usd_180d_change_1d&#39;,
+ &#39;ftx_perpetual_open_interest&#39;,
+ &#39;whale_transaction_count_100k_usd_to_inf&#39;,
+ &#39;nvt_5min&#39;,
+ &#39;withdrawal_transactions_5m&#39;,
+ &#39;mvrv_usd_30d_change_7d&#39;,
+ &#39;dormant_circulation_2y&#39;,
+ &#39;exchange_inflow_change_7d&#39;,
+ &#39;nvt_transaction_volume&#39;,
+ &#39;realized_value_usd_10y&#39;,
+ &#39;sentiment_volume_consumed_twitter&#39;,
+ &#39;social_dominance_total_1h_moving_average_change_1d&#39;,
+ &#39;sentiment_positive_bitcointalk&#39;,
+ &#39;social_dominance_total&#39;,
+ &#39;sentiment_balance_total_change_30d&#39;,
+ &#39;mvrv_usd_365d_change_7d&#39;,
+ &#39;bitmex_perpetual_open_value&#39;,
+ &#39;realized_value_usd_60d&#39;,
+ &#39;circulation_usd_180d&#39;,
+ &#39;exchange_inflow_usd&#39;,
+ &#39;mean_realized_price_usd&#39;,
+ &#39;exchange_balance_change_7d&#39;,
+ &#39;network_growth&#39;,
+ &#39;social_dominance_bitcointalk_24h_moving_average&#39;,
+ &#39;ftx_perpetual_funding_rate&#39;,
+ &#39;sentiment_volume_consumed_reddit&#39;,
+ &#39;sentiment_negative_twitter&#39;,
+ &#39;fees_to_network_circulation_usd_1d&#39;,
+ &#39;usdt_bnb_open_interest&#39;,
+ &#39;social_volume_total_change_7d&#39;,
+ &#39;mvrv_usd_365d_change_30d&#39;,
+ &#39;deposit_transactions&#39;,
+ &#39;social_volume_twitter&#39;,
+ &#39;amount_in_exchange_top_holders&#39;,
+ &#39;dormant_circulation_usd_180d&#39;,
+ &#39;mvrv_usd_intraday_3y&#39;,
+ &#39;price_histogram&#39;,
+ &#39;sentiment_balance_total&#39;,
+ &#39;realized_value_usd_90d&#39;,
+ &#39;supply_outside_exchanges&#39;,
+ &#39;dormant_circulation_5y&#39;,
+ &#39;transaction_volume_usd&#39;,
+ &#39;dormant_circulation_usd_180d_change_7d&#39;,
+ &#39;age_destroyed_change_1d&#39;,
+ &#39;mvrv_usd_intraday_30d&#39;,
+ &#39;average_fees_usd&#39;,
+ &#39;social_dominance_total_1h_moving_average&#39;,
+ &#39;transactions_count&#39;,
+ &#39;community_messages_count_telegram&#39;,
+ &#39;unique_social_volume_total_5m&#39;,
+ &#39;mean_realized_price_usd_1d&#39;,
+ &#39;circulation_usd_180d_change_7d&#39;,
+ &#39;network_growth_change_1d&#39;,
+ &#39;busd_bnb_open_value&#39;,
+ &#39;community_messages_count_total&#39;,
+ &#39;sentiment_negative_total&#39;,
+ &#39;social_dominance_total_1h_moving_average_change_30d&#39;,
+ &#39;usdt_binance_open_value&#39;,
+ &#39;all_spent_coins_cost&#39;,
+ &#39;age_distribution&#39;,
+ &#39;fees_usd_intraday&#39;,
+ &#39;sentiment_negative_reddit&#39;,
+ &#39;realized_value_usd_2y&#39;,
+ &#39;mean_realized_price_usd_7d&#39;,
+ &#39;mvrv_usd_z_score&#39;,
+ &#39;bitmex_perpetual_funding_rate_change_7d&#39;,
+ &#39;dydx_perpetual_funding_rate&#39;,
+ &#39;transaction_volume_change_7d&#39;,
+ &#39;mvrv_usd_change_7d&#39;,
+ &#39;social_dominance_twitter_1h_moving_average&#39;,
+ &#39;exchange_inflow_usd_change_7d&#39;,
+ &#39;bitmex_perpetual_open_interest&#39;,
+ &#39;busd_binance_open_value&#39;,
+ &#39;mvrv_usd_intraday_90d&#39;,
+ &#39;adjusted_price_daa_divergence&#39;,
+ &#39;social_dominance_reddit_1h_moving_average&#39;,
+ &#39;circulation_change_1d&#39;,
+ &#39;median_transfer_5m&#39;,
+ &#39;social_dominance_total_24h_moving_average_change_30d&#39;,
+ &#39;circulation_90d&#39;,
+ &#39;social_dominance_total_change_1d&#39;,
+ &#39;age_consumed&#39;,
+ &#39;circulation_180d&#39;,
+ &#39;exchange_balance_change_1d&#39;,
+ &#39;busd_binance_open_interest&#39;,
+ &#39;fees&#39;,
+ &#39;exchange_outflow_usd_change_30d&#39;,
+ &#39;social_dominance_reddit_24h_moving_average&#39;,
+ &#39;supply_on_exchanges&#39;,
+ &#39;spent_coins_cost&#39;,
+ &#39;mvrv_usd_intraday&#39;,
+ &#39;bitmex_perpetual_funding_rate_change_30d&#39;,
+ &#39;circulation_3y&#39;,
+ &#39;exchange_outflow_v2&#39;,
+ &#39;realized_value_usd_3y&#39;,
+ &#39;network_growth_change_7d&#39;,
+ &#39;deposit_transactions_5m&#39;,
+ &#39;circulation_5y&#39;,
+ &#39;circulation_usd_180d_change_30d&#39;,
+ &#39;dormant_circulation_3y&#39;,
+ &#39;exchange_outflow&#39;,
+ &#39;mvrv_usd_intraday_365d&#39;,
+ &#39;social_dominance_telegram_24h_moving_average&#39;,
+ &#39;avg_gas_used&#39;,
+ &#39;mvrv_usd_change_1d&#39;,
+ &#39;mvrv_usd_365d&#39;,
+ &#39;contract_transactions_count&#39;,
+ &#39;mean_realized_price_usd_2y&#39;,
+ &#39;contract_interacting_addresses_count&#39;,
+ &#39;deribit_perpetual_funding_rate&#39;,
+ &#39;dormant_circulation_365d_change_7d&#39;,
+ &#39;circulation_change_7d&#39;,
+ &#39;active_deposits&#39;,
+ &#39;withdrawal_transactions&#39;,
+ &#39;sentiment_volume_consumed_total_change_30d&#39;,
+ &#39;usdt_bnb_funding_rates&#39;,
+ &#39;amount_in_top_holders&#39;,
+ &#39;circulation_usd_180d_change_1d&#39;,
+ &#39;mvrv_usd_180d_change_30d&#39;,
+ &#39;circulation_60d&#39;,
+ &#39;exchange_inflow&#39;,
+ &#39;busd_bnb_open_interest&#39;,
+ &#39;mean_realized_price_usd_3y&#39;,
+ &#39;bitmex_perpetual_basis_ratio&#39;,
+ &#39;exchange_balance_v2&#39;,
+ &#39;social_dominance_telegram&#39;,
+ &#39;mean_realized_price_usd_60d&#39;,
+ &#39;social_dominance_bitcointalk_1h_moving_average&#39;,
+ &#39;realized_value_usd_365d&#39;,
+ &#39;median_fees_usd_5m&#39;,
+ &#39;social_volume_bitcointalk&#39;,
+ &#39;usdt_binance_funding_rate&#39;,
+ &#39;exchange_outflow_usd_change_1d&#39;,
+ &#39;sentiment_volume_consumed_total&#39;,
+ &#39;social_dominance_total_24h_moving_average_change_7d&#39;,
+ &#39;social_volume_total&#39;,
+ &#39;age_destroyed&#39;]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[96]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rpc</span> <span class="o">=</span> <span class="s1">&#39;https://lightning-replica.boba.network/&#39;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span><span class="s2">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;eth_getBlockByNumber&quot;</span><span class="p">,</span><span class="s2">&quot;params&quot;</span><span class="p">:[</span><span class="s2">&quot;0x1b4&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span><span class="s2">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;eth_blockNumber&quot;</span><span class="p">,</span><span class="s2">&quot;params&quot;</span><span class="p">:[],</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">83</span><span class="p">}</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;jsonrpc&quot;</span><span class="p">:</span><span class="s2">&quot;2.0&quot;</span><span class="p">,</span><span class="s2">&quot;method&quot;</span><span class="p">:</span><span class="s2">&quot;eth_getBlockRange&quot;</span><span class="p">,</span><span class="s2">&quot;params&quot;</span><span class="p">:[</span><span class="s2">&quot;0x1&quot;</span><span class="p">,</span> <span class="s2">&quot;0xf&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">rpc</span><span class="p">,</span><span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[97]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+{&#39;jsonrpc&#39;: &#39;2.0&#39;,
+ &#39;id&#39;: 1,
+ &#39;result&#39;: [{&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000c71db61ee15acd2d10b23d5311331b3a6b17b62275f4e2b96b56eeb48c12c744714677019d9cccc80281698a93258da1d6fb5bc7205be91bdd870cfa75c0cab401&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x2565f&#39;,
+   &#39;hash&#39;: &#39;0xaf2ccd780f53ae2db9b9d8bde016907aa8a196809ba53b6adf376ed2816e25a7&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000100000000000000000004000000000000040000001000000000000000000080000000100000000000000000000000000020000000000000000000000024000000000008000000000000000000000000000000000800000000000000020000400000000000020800000010000000400000000018000000000000010000000000000000000000000001800000002000000000000000000000000080000000000000000000000000000000200000000000000000000000000000000002000004000000000000000000000002120000000000000000000020000000002000000000000000000000000000000000000000000000000008000000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x1&#39;,
+   &#39;parentHash&#39;: &#39;0xdcd9e6a8f9973eaa62da2874959cb152faeb4fd6929177bd6335a1a16074ef9c&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xec563a907227deb918cdcba8435e8e2994f55d79963068f67ab6bf6cd6d73136&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x44c&#39;,
+   &#39;stateRoot&#39;: &#39;0x8721d1d6788125b26f1c8fde3ade3c03f857848b6164a817d6e7254e5208c7a3&#39;,
+   &#39;timestamp&#39;: &#39;0x617a1f9f&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x3&#39;,
+   &#39;transactions&#39;: [&#39;0xdd6de2b4d2670ed2dab5d25617fd636d97bbf66a486f8f22f69b7b07b5ac7a4c&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xaba72fce77026d56b1d42721d8fbd0cbdc6aa9af9662e4c80e70ecee956bc79f&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000006e4bc0955bd352eabf5b0e503430bd24b01c686c740ed53d61bcf66a1943740a004c7b8401f2a9c1a3ac6427a5b899d79dbd4a034c399c9d12d2067c93f1de00&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x22712&#39;,
+   &#39;hash&#39;: &#39;0x38b5f97fd43ee5ef85626d66f4230a6cf6d68078733c0b62dd6636c09c86a505&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000001000000000000000000080000000000000000000000000000000000000080000000000000200000000000010000000000200000000000000000000000000000000000000000000000000400000000000000000000000001000000000000008000000000000000000040000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080100000000000000000000000000000000000000000000000000000000000000020000000000000000008000000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x2&#39;,
+   &#39;parentHash&#39;: &#39;0xaf2ccd780f53ae2db9b9d8bde016907aa8a196809ba53b6adf376ed2816e25a7&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xd94cfd451eb593eb55d3ec75f18d357d32509900c139b0424dc53f4b41defb84&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x3ac&#39;,
+   &#39;stateRoot&#39;: &#39;0x88b971223137e2a972b7540a5e66ee2652c76347c1cee7125fb93a0b9c2e1599&#39;,
+   &#39;timestamp&#39;: &#39;0x617a27c7&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x5&#39;,
+   &#39;transactions&#39;: [&#39;0xe67d1fef5436b88822e34a855ccc299bee4577bde20a723d13a86cbad9b269b4&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xc9ba3ee51869f663513ff48b5bcd9383b5d30c3b62ab3e6818f1a77ed00c1d6a&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e757800000000000041d0f3f5be44ec9170d41763a6d2e8859e303784fa5ed64d52bb93ca4b0c4c8a15a5086918303d997d0c6a92fed79bc7113d5e326711c83ee7df44362bbed63f00&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x2566b&#39;,
+   &#39;hash&#39;: &#39;0xc61ad28c53d7b482fac0b8d5dc93d3e01248456ca76b8d7a222d18123e944746&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000002000000000000000000000000000000000000040000001010000000000000000080000000100000000000000000000000000020000000000000000000000024000000000008000000000000000000000000000000000000000000000000020000400000008000020800000010000000400000000018000000000000000000000000000000000000000001800000006000000000000000000000000080800000000000000000000000040000200000000000000000000000000000000002000004000000000000000000000002100000000000000000000020000000000000000000000000000000000000000000000000000000000008000000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x3&#39;,
+   &#39;parentHash&#39;: &#39;0x38b5f97fd43ee5ef85626d66f4230a6cf6d68078733c0b62dd6636c09c86a505&#39;,
+   &#39;receiptsRoot&#39;: &#39;0x4892d11c0a3b4382cd4fc22c9b97caa47795ce2f62d102814ea00a553351b322&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x44c&#39;,
+   &#39;stateRoot&#39;: &#39;0x1eba39acb5a9b6a5bb681bf2c5744ebfe86388fb8c43893453abe1250a1f3c05&#39;,
+   &#39;timestamp&#39;: &#39;0x617a28e3&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x7&#39;,
+   &#39;transactions&#39;: [&#39;0x1762ed396bf91cdceec592370486fedd243c53ed57a6ff0476f6bb2976ea7f0e&#39;],
+   &#39;transactionsRoot&#39;: &#39;0x24049c35321bfd856cbfaf376a1d10b0d154f97cb7e35227b8acc609280442ee&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e757800000000000016751afec8f76ebb9851ac6785dc786a61899b67fc214338a31037081b5c5d1308d9af2e21ffda3f2aee7af5ecd377b6ee63cb0d4f8821054d456c3d1bdc5a4100&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x75ac&#39;,
+   &#39;hash&#39;: &#39;0x9f7edf94ba82086d725e5de901091f63b0c842cf662c45d5d2324439c1f7e9a7&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000002000002000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000400000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x4&#39;,
+   &#39;parentHash&#39;: &#39;0xc61ad28c53d7b482fac0b8d5dc93d3e01248456ca76b8d7a222d18123e944746&#39;,
+   &#39;receiptsRoot&#39;: &#39;0x51463d88ac325df21ed3f4acceda4a7ccecb4acc1fe0316f086fcdebc6bf371e&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x309&#39;,
+   &#39;stateRoot&#39;: &#39;0xf24f4fd3f2511c2cacbf09048e8cb17975e0aaa0d9f3fc0dc9d7fe57fc00a886&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2a59&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x9&#39;,
+   &#39;transactions&#39;: [&#39;0x609a58d6e4fb4799227d74ae5b5cb7b57219c795e055187c0ff3d658c450b84d&#39;],
+   &#39;transactionsRoot&#39;: &#39;0x814e4ad710f587ed833b75519e3ccfd1685f7979bbffa8891c26161fe2d330ed&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e757800000000000058a56bf5b630ef7b44f5fcf0d10001cdc595f42066adcbb12b6cb8f0f280f1f92dc7618f507bb4b632ffe2538c9bb9b01812cd3059675f192af0a56fe6aecbd500&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x9670&#39;,
+   &#39;hash&#39;: &#39;0x9d59cb7986ff4718185f9c35437550aca1838ca6abe64bb0c9f343adc6caef7b&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000010000000000000000000000000000002000000000000000000004000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000002000002000000000000000000000000000000000000000400000000000000000000000000100000000000000000000000000000000000000000400000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x5&#39;,
+   &#39;parentHash&#39;: &#39;0x9f7edf94ba82086d725e5de901091f63b0c842cf662c45d5d2324439c1f7e9a7&#39;,
+   &#39;receiptsRoot&#39;: &#39;0x0df63d1a8ba7da711fc3ea388e4098dec191b961e34db02c16b3b60a724d2783&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x309&#39;,
+   &#39;stateRoot&#39;: &#39;0xbdcd23937dc3a223ce465535aa1dcbe3502081c0e5684ac778454b1cdd50d715&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2b1b&#39;,
+   &#39;totalDifficulty&#39;: &#39;0xb&#39;,
+   &#39;transactions&#39;: [&#39;0xdbb384ee5a99b978685cfb0521aa6c79b3e9b31fd5ddebd4c02720c139fa579f&#39;],
+   &#39;transactionsRoot&#39;: &#39;0x4bbb211d330ebe10485475eb242aa071090dfc87807418e1def6c0452da6a38c&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000a6243678aeac890675f8080ec7f97a8641c3d70fef62ab13cf5faf856e201eb331738cbcc46ef505e0b0b260a19bf6d4a1ee38afcb94e59cc8ddf6600c28fdd700&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0xac6a&#39;,
+   &#39;hash&#39;: &#39;0xe85874dad0cdaa738a902f65f33f9e2a7065f85831bf0a40338653cffde72122&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000008000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000000000800000002000000000000000000000000000000000000000400000000000010000000000004100000000000000000000000000000000000000000400000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x6&#39;,
+   &#39;parentHash&#39;: &#39;0x9d59cb7986ff4718185f9c35437550aca1838ca6abe64bb0c9f343adc6caef7b&#39;,
+   &#39;receiptsRoot&#39;: &#39;0x751b88a247be118c269f6c0c84884a8d4cc0b1de6af240be85ef603001df58b7&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x309&#39;,
+   &#39;stateRoot&#39;: &#39;0xeac0fea087b95719331fcf46b8ac04ac3c8161d42b9f2cbfd7fb346ce375ef80&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2b1b&#39;,
+   &#39;totalDifficulty&#39;: &#39;0xd&#39;,
+   &#39;transactions&#39;: [&#39;0xa212f8b4568ea69083114c631108155e7377af24e424087541124783b9f48e45&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xe3f8ed630f952f557a48a74794fc763f4937676bfa2d8e5cd1ef99ca7d09b1d4&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e757800000000000020e91ee0f9de2ffad3776b698296bdeab2d201f270f3ec878419b620a0c3ceec75c341e5b6c5f3a75773a3bfc10ce4fbfa4ee77a07239d20df601d30828ae77301&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x219f1&#39;,
+   &#39;hash&#39;: &#39;0xc01c3c7e964ac296a1a1825acbd07cb1f06c664c23042142e6613c0945982324&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000010000000000000000000000000000000000000001000000000000000000082000000000000008000000000000000000000000000200000000200000000000040000008000008000000000000000000001000000000000000000000000000000010000000000000000000000000000000000010000000000000000000040000000002000000000000000800000000000000000000000000020000200000000000000000000000000000000000000000000000000000000000001802000002000004000000000000000000100000000000000400000000000010000000000004100000000000000000000000000000000000000000400000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x7&#39;,
+   &#39;parentHash&#39;: &#39;0xe85874dad0cdaa738a902f65f33f9e2a7065f85831bf0a40338653cffde72122&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xd67d38341ad5c9064220e810eb1a0e7b2dbfd63ae95fceeb0b9d2224c3cd458a&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x30b&#39;,
+   &#39;stateRoot&#39;: &#39;0x5af1e03131ac3c8dd928888cc5ff650b538852086a35d59be7189af027bfe01a&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2b1b&#39;,
+   &#39;totalDifficulty&#39;: &#39;0xf&#39;,
+   &#39;transactions&#39;: [&#39;0xc00195b01847d4f4fcc579c319b69e49eb189a08b5fd58366bdf941a9852ea39&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xa4e78994f472e72a7f442fb173bf6a77a7ab70ef5b759734459a1cee4fad7af2&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e75780000000000009c3add83d9b4c394a83ec3045b08535730552ed3876e38b84971b677e97da76d1856793d87a86c62467dd320dfaa92cd635ca518d011c145397040211c47f95900&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x63b2&#39;,
+   &#39;hash&#39;: &#39;0x996ec51cfa7c2ceee94ef027b0bf815fe0a23d1e1824457dbe945178d6fef05c&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000800000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x8&#39;,
+   &#39;parentHash&#39;: &#39;0xc01c3c7e964ac296a1a1825acbd07cb1f06c664c23042142e6613c0945982324&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xdafaeb222fbf252701cae95b2b0992115072c7ce08d42dd5b407d65b3aa19bf7&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x2e8&#39;,
+   &#39;stateRoot&#39;: &#39;0x29eb6695bde7d23746add1494cb1329be743cd7f3119c435c983ea24a1af2a8c&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2d74&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x11&#39;,
+   &#39;transactions&#39;: [&#39;0xcf96595f90aa452e356018bf47865c18f6427bc7672583b1842d785d125e5ece&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xd96cfd2789cbc243a1ca69e41742334041f665c37ce9429240d8e25c675e4240&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000dfa8f93d767a6fa54708c7bdad8c4e7a9761efb637b8614154d87bde1fbc72090aebbd8004b2b68c1eeb170f40e0098534b5299195fa4de858e1dd3671ac1dd500&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x2b891&#39;,
+   &#39;hash&#39;: &#39;0x16ede1eaa7a1777a1ec771feebd3416816dad49a62fa7c5ceb95f0e62908db0a&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000001000000000020000000080000000000000000000000000000000000000080000000000000200000000000000000008000008000000000000000000000000000000000040000000000000400010000000000000000000001000000000000018000000000000000000040000000002000000010000000000000000100000000000000000000000200000000000000000000000000000000000000010000000000000000000000802000000000800000000000000000080100000000000000400000000000000000000000004000000000000000000000000000000000000000008000000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0x9&#39;,
+   &#39;parentHash&#39;: &#39;0x996ec51cfa7c2ceee94ef027b0bf815fe0a23d1e1824457dbe945178d6fef05c&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xebca2acc8606e7772bf3faeff35ffb91a6aeb4ea87b7b0febe2a12185df0f10e&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x3ac&#39;,
+   &#39;stateRoot&#39;: &#39;0x85262180aa21b0a8294560598db4dd89d5d28deb130b84ba9fdb67eeb43837f9&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2e16&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x13&#39;,
+   &#39;transactions&#39;: [&#39;0xd3af2bde78b0cda02ef0cf51d98393d4541eb4b71e60e6218e8e5b3d4cf0e05f&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xc5af05ef23772074b8be58df3197e0a3c78fad9d27a56a6908ed048d6ab8ae8c&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e757800000000000090e035f65202d17856ef41a5097d947e58c77a56817f8dc1a5b0a7aa451fa6835d02436868d88dae3f2f0ba1ae37a6192213269133b904f5d0153de7e903afee00&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x63b2&#39;,
+   &#39;hash&#39;: &#39;0x0b4ec264d9cc8610447c9332da1fabe826f9d7779fa61650d8571b9366aaceca&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000800000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0xa&#39;,
+   &#39;parentHash&#39;: &#39;0x16ede1eaa7a1777a1ec771feebd3416816dad49a62fa7c5ceb95f0e62908db0a&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xdafaeb222fbf252701cae95b2b0992115072c7ce08d42dd5b407d65b3aa19bf7&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x2e8&#39;,
+   &#39;stateRoot&#39;: &#39;0xf1e59e6c2b44608285796f88b702640712a7edd5ecb992cc703a0f9266e26af2&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2ece&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x15&#39;,
+   &#39;transactions&#39;: [&#39;0x907b4deba55cf3d98708d4b43fd82fbc3b1f841b1274024a59f83e6a66815a3c&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xe01247a80fc8190d0e95347227a2fd81e6b617df5b718117db7144c6c0fd4977&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000395a8bfa07f258e86eead1e56be601355c9719a725e9fadc421f8e476996e4fb1ab831e19c21cceb1c219ad3d1c4c8e943554b79d61071fd6ce4f3410acceb0601&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x7432&#39;,
+   &#39;hash&#39;: &#39;0xfc67de9651f6a9a31fca2f4c7a4bc171b4c3c66764a1a9a7968eab7f61bd85b8&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000800000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0xb&#39;,
+   &#39;parentHash&#39;: &#39;0x0b4ec264d9cc8610447c9332da1fabe826f9d7779fa61650d8571b9366aaceca&#39;,
+   &#39;receiptsRoot&#39;: &#39;0x7dd416530bf968a38798850b36198ca34133a35423f4349d34629c83fea14f01&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x2e8&#39;,
+   &#39;stateRoot&#39;: &#39;0x63eb0b161c749962121b7ea9361c670ff0954c66daa3875a6f3b3b670f3073f8&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2ece&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x17&#39;,
+   &#39;transactions&#39;: [&#39;0x4cd2874b9c7beba1480a496d9614d13c2d5048794676633fd5883ae87c05e36e&#39;],
+   &#39;transactionsRoot&#39;: &#39;0x1f52e872052616a102e4fab7eeea6dbd7cf9ae21c907ba681c1503570fa68348&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000fe4b6a44c74f4ad5a5dbb37dc555c1cd3d0311fec44c67d709c1d540fdba50d63c4153242a8c4e730275b0e2255279db9e56ea935fc8a13e6638ed1a1ff9428d01&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x743e&#39;,
+   &#39;hash&#39;: &#39;0x6ada70ad0beb2b2630ea789a447e180665ed666798a07aefc85f1542897c182e&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000800000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0xc&#39;,
+   &#39;parentHash&#39;: &#39;0xfc67de9651f6a9a31fca2f4c7a4bc171b4c3c66764a1a9a7968eab7f61bd85b8&#39;,
+   &#39;receiptsRoot&#39;: &#39;0x56f21c42508632687a99191a128c3ec072cc0cfd478d6c06e0e9c67c662436ee&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x2e8&#39;,
+   &#39;stateRoot&#39;: &#39;0x242110fe0a666bba78127b1d0a7d9150eb8b42d280226c59705704545b6c295b&#39;,
+   &#39;timestamp&#39;: &#39;0x617a2f8a&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x19&#39;,
+   &#39;transactions&#39;: [&#39;0x233b9b45e6fa9989c0d37c75f1db0a7ee27aa46ae9285ac52bb2e2d37c7a788f&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xcebc2d0a3d10183fc7e795d3dd1272d291aaed6c5e19c866af19daa05086189b&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000f7e67ae060e826b117b216da552cbe47d31d54d1810e62a0a662ebc1364e24ce39d515cfed5d2b89486ac8b25650393b5370d8a176757b91c35d451969a7fc3e00&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x27e05&#39;,
+   &#39;hash&#39;: &#39;0x9d851c83cb1b4c76958d33bc561528ccbe839bc655cff2f3700aaec89d98e89d&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000001010000000000000000080000000000000000000000000000000000000080000000000000200000000000000000008000008000000000000000000000000000000000000000000200000400000000000000000000000001000000000000018000000000000000000040000000000000200000000000000004000100000000000000000000000200000000000000000000000040000000000000010000000000000000000000802000000000800000000000000000080100000000000000000000000000000000000000004000000000000000000000000000000000000000008000004&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0xd&#39;,
+   &#39;parentHash&#39;: &#39;0x6ada70ad0beb2b2630ea789a447e180665ed666798a07aefc85f1542897c182e&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xd1d224d6d5a779bccdee38f562c662b1418dd9683301ad1b0f680a511e439db9&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x3ac&#39;,
+   &#39;stateRoot&#39;: &#39;0xbfa2f8256448ed46ffe6e878cb766646ab29861a28f4fa2d9517081b9b5046ea&#39;,
+   &#39;timestamp&#39;: &#39;0x617a3089&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x1b&#39;,
+   &#39;transactions&#39;: [&#39;0xcb51622850b752f5f17606eb8f18cfc6aa59ef6b3cc9a2e94a983314ccbca661&#39;],
+   &#39;transactionsRoot&#39;: &#39;0xe7ef327a2a1042fb41c5db56ecc086eadb3fc2e640fcf10c363ad5ca51a665cd&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e757800000000000047058ed03d14e71bb59c65f772ff792a90eb684bb7f6cab3bacda7a51d5ef583167e3a1b1870b7113d0f6076f91a2508bc26ec664b5de96ad1b5a97c93ebf38d00&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x743e&#39;,
+   &#39;hash&#39;: &#39;0xe9ed04482d8768ddb0767099328196d9598b12875660a4afdb2ef72a3b382cbb&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000800000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0xe&#39;,
+   &#39;parentHash&#39;: &#39;0x9d851c83cb1b4c76958d33bc561528ccbe839bc655cff2f3700aaec89d98e89d&#39;,
+   &#39;receiptsRoot&#39;: &#39;0x5ef5b22d59f4e339b9a8b90825952702ef5e97ecc6686185c62238881fbb44d8&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x2e8&#39;,
+   &#39;stateRoot&#39;: &#39;0xc03f491d365f8161a90bff1dc99240c992d9e92abc50e497ce58fa96a8da59f9&#39;,
+   &#39;timestamp&#39;: &#39;0x617a3089&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x1d&#39;,
+   &#39;transactions&#39;: [&#39;0x16eb6374e2e7733eee954031a7d7af17365ac13f98a378d61dfda81623073ec1&#39;],
+   &#39;transactionsRoot&#39;: &#39;0x51375e0be628e3aeb0ed7b6e285618fd0de73614f0f6bf1cb32e54bc8e92ff37&#39;,
+   &#39;uncles&#39;: []},
+  {&#39;difficulty&#39;: &#39;0x2&#39;,
+   &#39;extraData&#39;: &#39;0xd98301090a846765746889676f312e31352e3133856c696e7578000000000000da931d28e2082c3a86a56eb2ae38f6f3faf9f2d466c1d7213dc7a9cf4b1dea6942e4097993482da1f6cd6be0c5c0a8f40ec348c7512435b40adcb76cb07c6ec500&#39;,
+   &#39;gasLimit&#39;: &#39;0xa7d8c0&#39;,
+   &#39;gasUsed&#39;: &#39;0x75ac&#39;,
+   &#39;hash&#39;: &#39;0x49997ee3ef593b9ae615eab755edafccdf600c02200d4c02f20c1e3450fb1da6&#39;,
+   &#39;logsBloom&#39;: &#39;0x00000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000004000100000000000000000000000000000000000000000000000040000000000000010000000000000000000000002000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;miner&#39;: &#39;0x0000000000000000000000000000000000000000&#39;,
+   &#39;mixHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+   &#39;nonce&#39;: &#39;0x0000000000000000&#39;,
+   &#39;number&#39;: &#39;0xf&#39;,
+   &#39;parentHash&#39;: &#39;0xe9ed04482d8768ddb0767099328196d9598b12875660a4afdb2ef72a3b382cbb&#39;,
+   &#39;receiptsRoot&#39;: &#39;0xf7cf9f24fcd2e66f542223a62c12b83dc5567c148b115f3e7182346faa2be57f&#39;,
+   &#39;sha3Uncles&#39;: &#39;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#39;,
+   &#39;size&#39;: &#39;0x30d&#39;,
+   &#39;stateRoot&#39;: &#39;0x41049084782b66e15101bb496e8f1051f00b4bc460809f6d775c37f0c5112753&#39;,
+   &#39;timestamp&#39;: &#39;0x617a3150&#39;,
+   &#39;totalDifficulty&#39;: &#39;0x1f&#39;,
+   &#39;transactions&#39;: [&#39;0xa3dcd50b630e3983c4c1f74bd6ccfe80f5ba5d93684e4e53452f89bbcdbc96dc&#39;],
+   &#39;transactionsRoot&#39;: &#39;0x7e8e8286f37ae60bc4cf3dee10091eb770fbac8d6df8919009df2b9ed51869a2&#39;,
+   &#39;uncles&#39;: []}]}
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </section>
 </section>

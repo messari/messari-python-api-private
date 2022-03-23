@@ -106,6 +106,7 @@ Check out our examples `here <https://github.com/messari/messari-python-api/blob
    notebooks/NonFungible API Tutorial.ipynb
    notebooks/NFT Price Floor API Tutorial.ipynb
    notebooks/Event Monitor Tutorial.ipynb
+   notebooks/fred.ipynb
 
 
 Indices and tables
