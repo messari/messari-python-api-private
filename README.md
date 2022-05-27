@@ -22,6 +22,7 @@ Roberto Talamas or Michael Kremer on slack.
 * OpenSea API
 * NFT Floor Price API
 * EVM Live Event Monitoring
+* FRED API
 
 ---
 ### Remote Install
