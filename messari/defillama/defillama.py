@@ -272,8 +272,9 @@ class DeFiLlama(DataLoader):
         """
         chains = self.get_response(DL_CHAINS_URL)
 
-        chain_names = []
-        for chain in chains:
-            chain_names.append(chain['name'])
+        chain_names = [chain['name'] for chain in chains]
+
+        # Sort chain name results to ensure consistent order
+        chain_names = sorted(chain_names)
 
         return chain_names
