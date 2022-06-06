@@ -210,6 +210,11 @@ class DeFiLlama(DataLoader):
 
         # Join DataFrames from each chain & return
         chains_df = pd.concat(chain_df_list, axis=1)
+
+        # If chains_df is empty, return an empty DataFrame
+        if chains_df.empty:
+            return pd.DataFrame()
+
         chains_df.columns = chains
         chains_df = time_filter_df(chains_df, start_date=start_date, end_date=end_date)
         return chains_df
