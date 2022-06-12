@@ -10,6 +10,7 @@ setup(
     name='messari',
     version='0.0.1',
     packages=['messari',
+              'messari.coingecko',
               'messari.defillama',
               'messari.fred',
               'messari.messari',
