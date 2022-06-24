@@ -87,10 +87,11 @@ class CoinGecko(DataLoader):
         df = pd.Series(response).to_frame(name=coin_id)
         return df
 
-    def get_coin_chart(self, coin_id: str, days: str='max') -> pd.DataFrame:
+    def get_coin_chart(self, coin_id: str, interval: int = 'daily', days: str='max') -> pd.DataFrame:
         url = f'{BASE_URL}/coins/{coin_id}/market_chart'
         parameters = {
                 'vs_currency': 'usd',
+                'interval': interval,
                 'days': days
                 }
         response = self.get_response(url, params=parameters)
