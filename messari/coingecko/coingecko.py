@@ -236,10 +236,38 @@ class CoinGecko(DataLoader):
         url = f'{BASE_URL}/exchanges/{exchange_id}/volume_chart'
         parameters= {'days' : days}
         response = self.get_response(url,params=parameters)
-        df = pd.DataFrame(response).set_index(0)
-        df.index = pd.to_datetime(df.index, unit='ms')
-        df.rename(columns={1:exchange_id},inplace=True)
-        return df
+
+        exchange_volume_column_name = "exchange_volume.btc"
+
+        # Get exchange volume for the exchange in BTC terms
+        df_exchange_volume = pd.DataFrame(response).set_index(0)
+
+        # Convert timestamp to datetime and rename column to represent units
+        df_exchange_volume.index = pd.to_datetime(df_exchange_volume.index, unit='ms')
+        df_exchange_volume.rename(columns={1: exchange_volume_column_name},inplace=True)
+    
+        df_exchange_volume.index.name = 'timestamp'
+        df_exchange_volume.reset_index(inplace=True)
+
+        # Convert datettime to date for use in groupby
+        df_exchange_volume['timestamp'] = df_exchange_volume['timestamp'].dt.date
+        df_exchange_volume[exchange_volume_column_name] = df_exchange_volume[exchange_volume_column_name].astype(float)
+
+        # Get the last recorded exchange volume for that day
+        df_exchange_volume = pd.DataFrame(df_exchange_volume.groupby(df_exchange_volume['timestamp'])[exchange_volume_column_name].last())
+
+        # Call `get_coin_chart` to get bitcoin price on that day 
+        # Omit the last partial date of price data
+        df_coin_market_chart = self.get_coin_chart('bitcoin', 'daily', days)['prices'][:-1]
+
+        df_coin_market_chart.index = pd.to_datetime(df_coin_market_chart.index, unit='ms')
+
+        # Join volume and price data to get exchange volume in both USD and BTC terms
+        df_joined = df_exchange_volume.join(df_coin_market_chart)
+        df_joined['exchange_volume.usd'] = df_joined[exchange_volume_column_name] * df_joined['prices']
+        df_joined.drop('prices', axis=1, inplace=True)
+
+        return df_joined.sort_index(ascending=False)
 
     ## indexes
     def get_index(self) -> str:
@@ -337,3 +365,9 @@ class CoinGecko(DataLoader):
         url = f'{BASE_URL}/companies/public_treasury/{coin_id}'
         response = self.get_response(url)
         return pd.DataFrame(response['companies'])
+
+if __name__ == "__main__":
+    client = CoinGecko()
+
+    df_trader_joe_volume = client.get_exchange_volume('traderjoe', 90)
+    print(df_trader_joe_volume)
