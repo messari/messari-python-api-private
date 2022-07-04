@@ -109,16 +109,18 @@ class Metabase(DataLoader):
             return df
 
         df = pd.DataFrame(response['data']['rows'])
-        df.name = name
-        df.url = url
 
         if df.empty:
             print(url, name, 'empty df')
+            df.name = name
+            df.url = url
             return df
 
         # TODO: Handle timeseries data
         cols_df = pd.DataFrame(response['data']['cols'])
         df.columns = cols_df['name'].tolist()
+        df.name = name
+        df.url = url
         return df
 
     async def run(self) -> List[pd.DataFrame]:
