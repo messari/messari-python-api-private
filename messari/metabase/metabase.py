@@ -99,15 +99,26 @@ class Metabase(DataLoader):
             print(name, url, err)
             return pd.DataFrame()
         response = await response.json()
+
+        # Rare case response is empty
+        if 'data' not in response:
+            print(name, url, 'empty response')
+            df = pd.DataFrame()
+            df.name = name
+            df.url = url
+            return df
+
         df = pd.DataFrame(response['data']['rows'])
+        df.name = name
+        df.url = url
+
+        if df.empty:
+            print(url, name, 'empty df')
+            return df
 
         # TODO: Handle timeseries data
         cols_df = pd.DataFrame(response['data']['cols'])
-        col_names = cols_df['name'].tolist()
-        df.columns = col_names
-
-        df.name = name
-        df.url = url
+        df.columns = cols_df['name'].tolist()
         return df
 
     async def run(self) -> List[pd.DataFrame]:
