@@ -17,6 +17,7 @@ setup(
               'messari.tokenterminal',
               'messari.deepdao',
               'messari.eventmonitor',
+              'messari.gokustats',
               'messari.nfts',
               'messari.nfts.upshot',
               'messari.nfts.nftpricefloor',
