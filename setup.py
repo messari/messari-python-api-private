@@ -14,6 +14,7 @@ setup(
               'messari.defillama',
               'messari.fred',
               'messari.messari',
+              'messari.metabase',
               'messari.tokenterminal',
               'messari.deepdao',
               'messari.eventmonitor',
