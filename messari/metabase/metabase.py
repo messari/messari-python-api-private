@@ -3,7 +3,7 @@
 import json
 import requests
 import pandas as pd
-from typing import List
+from typing import List, Dict
 
 # async jazz
 import asyncio
@@ -18,7 +18,7 @@ HEADERS = {
 
 class Metabase(DataLoader):
     
-    def __init__(self, url: str, ignore_list: List[str]=[]):
+    def __init__(self, url: str, ignore_list: List[str]=[], params: Dict=None):
 
         # Init DataLoader
         DataLoader.__init__(self, api_dict=None, taxonomy_dict=None)
@@ -26,6 +26,7 @@ class Metabase(DataLoader):
         # set key values
         self.url = url
         self.ignore_list = ignore_list
+        self.params = params
         
         # use url to get cards df
         self.cards = self.get_cards()
@@ -94,7 +95,10 @@ class Metabase(DataLoader):
     async def run_url(self, url: str, session, name: str) -> pd.DataFrame:
         print(name, url)
         try:
-            response = await session.get(url,headers=HEADERS,timeout=60)
+            if self.params:
+                response = await session.get(url,headers=HEADERS,params=self.params,timeout=60)
+            else:
+                response = await session.get(url,headers=HEADERS,timeout=60)
         except asyncio.TimeoutError as err:
             print(name, url, err)
             return pd.DataFrame()

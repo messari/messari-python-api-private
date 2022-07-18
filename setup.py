@@ -11,6 +11,7 @@ setup(
     version='0.0.1',
     packages=['messari',
               'messari.coingecko',
+              'messari.coinglass',
               'messari.defillama',
               'messari.fred',
               'messari.messari',
