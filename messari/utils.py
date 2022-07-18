@@ -8,6 +8,12 @@ from typing import List, Union, Dict
 
 import pandas as pd
 
+#******** Constants *************
+HEADERS = {
+    'Content-Type': 'application/json',
+    'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36',
+}
+
 # Inconsistent API usage between metrics and profile end points
 #
 # works: https://data.messari.io/api/v1/assets/BTC/metrics?fields=id,symbol,marketcap
